@@ -132,9 +132,9 @@
               <h5 class="my-3">限量推出『雲紋陶瓷淺盤』</h5>
 
               <p>低溫素燒，高溫釉燒，展現清澈透亮的釉彩質感</p>
-              <p>色彩柔和氣質典雅，百搭各種餐具，送禮自用兩相宜</p>
+              <p>百搭各種餐具，限量8組，送禮自用兩相宜</p>
               <router-link to="/product_list" class="btn btn-outline-primary"
-                >限量 5 組，手刀搶購</router-link
+                >手刀搶購 >></router-link
               >
             </div>
           </div>
@@ -143,7 +143,7 @@
             <div>
               <h4>
                 <span>
-                  寵愛媽咪送好鍋 <i class=" flicker fas fa-heart"></i> <span> </span>
+                  寵愛媽咪選好鍋 <i class=" flicker fas fa-heart"></i> <span> </span>
                   <i class=" flicker fas fa-heart"></i
                 ></span>
               </h4>
@@ -152,7 +152,7 @@
               <p>慢煮、香煎等各式料理手法都能夠輕鬆駕馭</p>
               <p>送好鍋來慰勞辛苦的媽媽就趁現在，限時搶購85折</p>
               <router-link to="/product_list" class="btn btn btn-outline-primary"
-                >孝心至上，立即選購～</router-link
+                >前往市集 >></router-link
               >
             </div>
           </div>
