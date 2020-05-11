@@ -114,6 +114,7 @@
               >
                 <div class="card-effect card">
                   <div class="container-img">
+                    <div class="sale-tag" v-if="item.origin_price !== ''">特價</div>
                     <div
                       class="l-point productlist-img"
                       :style="{ backgroundImage: `url(${item.imageUrl})` }"
@@ -124,7 +125,6 @@
                     <span class="badge category-tag mb-2">{{
                       item.category
                     }}</span>
-                    <div class="sale-tag" v-if="item.origin_price !== ''">特價</div>
                     <h5 class="card-title">
                       <h5 class="text-dark">{{ item.title }}</h5>
                     </h5>
@@ -354,9 +354,9 @@ export default {
     position: absolute;
     top:5px;
     right:5px;
-    padding:5px;
-    background-color: orange;
-    border-radius: 50% 50%;
+    padding:7px 5px;
+    background-color: rgba(247, 181, 82, 0.803);
+    border-radius: 50% 50% 50% 50%;
     color:white;
   }
 
