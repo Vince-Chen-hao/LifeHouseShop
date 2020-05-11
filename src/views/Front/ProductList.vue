@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="productlist-banner ">
-      <div class="dark-overlay d-flex justify-content-center align-items-center">
+      <div
+        class="dark-overlay d-flex justify-content-center align-items-center"
+      >
         <h1 class="banner-title text-center text-light">購 物 市 集</h1>
       </div>
     </div>
@@ -17,7 +19,9 @@
                   <router-link class="text-dark" to="/">首頁</router-link>
                 </li>
                 <li class="breadcrumb-item">
-                  <router-link class="text-dark" to="/product_list">購物市集</router-link>
+                  <router-link class="text-dark" to="/product_list"
+                    >購物市集</router-link
+                  >
                 </li>
                 <li class="breadcrumb-item" v-if="currentCat !== ''">
                   <span class="text-primary">{{ currentCat }}</span>
@@ -66,7 +70,7 @@
                   class="list-group-item list-group-item-action list-group-item-primary"
                   @click.prevent="filterPro('全部商品')"
                 >
-                  <i class="fas fa-align-justify"></i> 全部商品
+                  <i class="fas fa-align-justify"> </i> 全部商品
                 </a>
                 <a
                   href="#"
@@ -94,7 +98,7 @@
                   class="list-group-item list-group-item-action"
                   @click.prevent="filterPro('料理廚具')"
                 >
-                  <i class="fas fa-home"></i> 料理廚具
+                  <i class="fas fa-home"> </i> 料理廚具
                 </a>
               </div>
             </div>
@@ -103,7 +107,11 @@
           <!-- Productlist -->
           <div class="col-lg-10 text-dark">
             <div class="row my-4">
-              <div class="col-md-4 mb-4" v-for="(item, index) in filterProducts" :key="index">
+              <div
+                class="col-md-4 mb-4"
+                v-for="(item, index) in filterProducts"
+                :key="index"
+              >
                 <div class="card-effect card">
                   <div class="container-img">
                     <div
@@ -113,14 +121,21 @@
                     ></div>
                   </div>
                   <div class="card-body l-point" @click="goDetail(item.id)">
-                    <span class="badge category-tag mb-2">{{ item.category }}</span>
+                    <span class="badge category-tag mb-2">{{
+                      item.category
+                    }}</span>
+                    <div class="sale-tag" v-if="item.origin_price !== ''">特價</div>
                     <h5 class="card-title">
                       <h5 class="text-dark">{{ item.title }}</h5>
                     </h5>
                     <p class="card-text">{{ item.content }}</p>
-                    <div class="d-flex justify-content-between align-items-baseline">
-                      <del class="origin-price">NT{{ item.origin_price | currency }}</del>
-                      <div class="now-price">NT{{ item.price | currency }}</div>
+                    <div
+                      class="d-flex align-items-baseline"
+                    >
+                      <del v-if="item.origin_price !== ''" class="origin-price"
+                        >NT{{ item.origin_price | currency }}</del
+                      >
+                      <div class="now-price ml-auto">NT{{ item.price | currency }}</div>
                     </div>
                   </div>
                   <div class="card-footer">
@@ -129,15 +144,24 @@
                       class="btn btn-bg btn-block ml-auto text-dark"
                       @click="addtoCart(item)"
                     >
-                      <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                      <i
+                        class="fas fa-spinner fa-spin"
+                        v-if="status.loadingItem === item.id"
+                      ></i>
                       <i class="fas fa-shopping-bag"></i><span> 立即選購</span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row justify-content-center" v-if="currentCat === '全部商品'">
-              <Pagination :pageProps="pagination" @pagenum_emit="getProducts"></Pagination>
+            <div
+              class="row justify-content-center"
+              v-if="currentCat === '全部商品'"
+            >
+              <Pagination
+                :pageProps="pagination"
+                @pagenum_emit="getProducts"
+              ></Pagination>
             </div>
           </div>
         </div>
@@ -148,114 +172,114 @@
 </template>
 
 <script>
-import Pagination from "@/components/Share/Pagination.vue";
-import Shoppingcart from "@/components/Front/Shoppingcart.vue";
+import Pagination from '@/components/Share/Pagination.vue'
+import Shoppingcart from '@/components/Front/Shoppingcart.vue'
 
 export default {
   components: {
     Pagination,
     Shoppingcart
   },
-  data() {
+  data () {
     return {
-      currentCat: "全部商品",
+      currentCat: '全部商品',
       Allproducts: [],
       products: [],
-      filterData: "",
+      filterData: '',
       filterProducts: [],
       pagination: {},
       cart: {},
       form: {
         user: {
-          name: "",
-          email: "",
-          tel: "",
-          address: ""
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message: ""
+        message: ''
       },
       status: {
-        loadingItem: ""
+        loadingItem: ''
       }
-    };
+    }
   },
   computed: {},
 
   methods: {
-    //取得分頁後的產品
-    getProducts(page = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`;
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
+    // 取得分頁後的產品
+    getProducts (page = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
       vm.$http.get(api).then(response => {
-        vm.products = response.data.products;
-        vm.filterProducts = response.data.products;
-        vm.pagination = response.data.pagination;
-        vm.$store.dispatch("updateLoading", false);
-      });
+        vm.products = response.data.products
+        vm.filterProducts = response.data.products
+        vm.pagination = response.data.pagination
+        vm.$store.dispatch('updateLoading', false)
+      })
     },
 
-    addtoCart(item, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
+    addtoCart (item, qty = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
       const cart = {
         data: {
           product_id: item.id,
           qty
         }
-      };
+      }
       vm.$http.post(api, cart).then(response => {
-        vm.$bus.$emit("updateCart");
-        vm.$bus.$emit("message:push", response.data.message, "success");
-        vm.$store.dispatch("updateLoading", false);
-      });
+        vm.$bus.$emit('updateCart')
+        vm.$bus.$emit('message:push', response.data.message, 'success')
+        vm.$store.dispatch('updateLoading', false)
+      })
     },
 
-    //取得全部產品
-    getAllproducts() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
-      const vm = this;
+    // 取得全部產品
+    getAllproducts () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
+      const vm = this
       vm.$http.get(api).then(response => {
-        vm.Allproducts = response.data.products;
-      });
+        vm.Allproducts = response.data.products
+      })
     },
 
-    //取得分類的產品
-    filterPro(name) {
-      const vm = this;
-      vm.currentCat = name;
-      vm.$store.dispatch("updateLoading", true);
-      let newArray = [];
-      if (name === "全部商品") {
-        vm.getProducts();
+    // 取得分類的產品
+    filterPro (name) {
+      const vm = this
+      vm.currentCat = name
+      vm.$store.dispatch('updateLoading', true)
+      let newArray = []
+      if (name === '全部商品') {
+        vm.getProducts()
       } else {
         newArray = vm.Allproducts.filter(product => {
-          return product.category == name;
-        });
-        vm.filterProducts = newArray;
+          return product.category === name
+        })
+        vm.filterProducts = newArray
       }
-      vm.$store.dispatch("updateLoading", false);
+      vm.$store.dispatch('updateLoading', false)
     },
 
-    //關鍵字查詢產品
-    filterTitle() {
-      const vm = this;
+    // 關鍵字查詢產品
+    filterTitle () {
+      const vm = this
       vm.filterProducts = vm.products.filter(item => {
-        return item.title.indexOf(vm.filterData) > -1; //indexOf查詢陣列位置，找不到名稱則顯示-1
-      });
-      vm.filterData = "";
+        return item.title.indexOf(vm.filterData) > -1 // indexOf查詢陣列位置，找不到名稱則顯示-1
+      })
+      vm.filterData = ''
     },
-    goDetail(id) {
-      this.$router.push(`/product_detail/${id}`);
+    goDetail (id) {
+      this.$router.push(`/product_detail/${id}`)
     }
   },
 
-  created() {
-    this.getProducts();
-    this.getAllproducts();
+  created () {
+    this.getProducts()
+    this.getAllproducts()
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -320,6 +344,20 @@ export default {
       box-shadow: 1px 1px 10px 1px rgb(156, 156, 151);
       filter: brightness(1.1);
     }
+  }
+
+  .card-body {
+    position:relative;
+  }
+
+  .sale-tag {
+    position: absolute;
+    top:5px;
+    right:5px;
+    padding:5px;
+    background-color: orange;
+    border-radius: 50% 50%;
+    color:white;
   }
 
   .origin-price {

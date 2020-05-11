@@ -59,7 +59,7 @@
             :key="key"
             @click.prevent="linkProductlist"
           >
-            <i :class="category.icon"></i>
+            <i :class="category.icon" class="py-auto"></i>
             <ul style="list-style-type:none ">
               <li>{{ category.name }}</li>
               <li>{{ category.title }}</li>
@@ -73,7 +73,7 @@
       <div class="container my-5">
         <h3>產品風格</h3>
         <hr />
-        <div class="row mb-4">
+        <div class="row">
           <div class="col-sm-4 my-1">
             <div class="l-bg-cover rounded type01 img-thumbnail">
               <router-link class="black-cover" to="/product_list">
@@ -228,8 +228,8 @@
             喜歡我們的商品嗎？歡迎訂閱我們的頻道並多多分享，新品資訊絕不錯過！
           </p>
           <form class="form-inline justify-content-center">
-            <input type="text" class="form-control my-2 mr-3 text-center" placeholder="輸入暱稱" />
-            <input type="text" class="form-control my-2 mr-3 text-center" placeholder="輸入信箱" />
+            <input type="text" class="form-control my-2 mr-3 " placeholder="輸入暱稱" />
+            <input type="text" class="form-control my-2 mr-3 " placeholder="輸入信箱" />
             <button class="btn btn-primary  my-2" @click.prevent="subscriptComplete">
               送出
             </button>
@@ -241,54 +241,56 @@
 </template>
 
 <script>
-import $ from "jquery";
-import PopupNews from "@/components/Front/PopupNews.vue";
+import $ from 'jquery'
+import PopupNews from '@/components/Front/PopupNews.vue'
 
 export default {
   components: {
     PopupNews
   },
-  data() {
+  data () {
     return {
       categories: [
-        { name: "DISHES", title: "碗盤", icon: "fas fa-mortar-pestle fa-2x" },
-        { name: "MUG", title: "杯與壺", icon: "fas fa-mug-hot fa-2x" },
+        { name: 'DISHES', title: '碗盤', icon: 'fas fa-mortar-pestle fa-2x' },
+        { name: 'MUG', title: '杯與壺', icon: 'fas fa-mug-hot fa-2x' },
         {
-          name: "SPOON",
-          title: "刀叉匙筷",
-          icon: "fas fa-utensil-spoon fa-2x"
+          name: 'SPOON',
+          title: '刀叉匙筷',
+          icon: 'fas fa-utensil-spoon fa-2x'
         },
-        { name: "TOOLS", title: "料理廚具", icon: "fas fa-home fa-2x" }
+        { name: 'TOOLS', title: '料理廚具', icon: 'fas fa-home fa-2x' }
       ]
-    };
+    }
   },
   methods: {
-    linkProductlist() {
-      const vm = this;
-      vm.$router.push({ path: "/product_list" });
+    linkProductlist () {
+      const vm = this
+      vm.$router.push({ path: '/product_list' })
     },
-    subscriptComplete() {
-      const vm = this;
-      vm.$bus.$emit("message:push", "訂閱成功，感謝你的支持", "success");
+    subscriptComplete () {
+      const vm = this
+      vm.$bus.$emit('message:push', '訂閱成功，感謝你的支持', 'success')
     }
+  },
+
+  created () {
+    $(function () {
+      $('#SliderTop').click(() => {
+        $('html,body').animate({ scrollTop: 0 }, 'slow')
+        return false
+      })
+
+      // 偵測卷軸滑動時，往下滑超過400px就讓按鈕出現//
+      $(window).scroll(() => {
+        if ($(this).scrollTop() > 400) {
+          $('#SliderTop').fadeIn()
+        } else {
+          $('#SliderTop').fadeOut()
+        }
+      })
+    })
   }
-};
-
-$(function() {
-  $("#SliderTop").click(function() {
-    $("html,body").animate({ scrollTop: 0 }, "slow");
-    return false;
-  });
-
-  //偵測卷軸滑動時，往下滑超過400px就讓按鈕出現//
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 400) {
-      $("#SliderTop").fadeIn();
-    } else {
-      $("#SliderTop").fadeOut();
-    }
-  });
-});
+}
 </script>
 
 <style lang="scss" scoped>
@@ -359,6 +361,10 @@ $(function() {
 
 #CategoryList {
   .category-list {
+    ul {
+      padding-left: 20px;
+    }
+
     > li {
       //只改變下一層的子元素li，不再往內層作用
       display: flex;
@@ -371,7 +377,7 @@ $(function() {
       white-space: nowrap;
       @media (max-width: 575.98px) {
         font-size: 10px;
-        padding: 8px 0;
+        padding: 10px 0px;
       }
 
       &:hover,
@@ -442,6 +448,26 @@ $(function() {
     &:hover::before {
       opacity: 1;
     }
+
+    @media (max-width: 575.98px) {
+      span {
+        display: block;
+        color: rgb(255, 255, 255);
+        z-index: 2;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.7;
+        background-color: rgba(156, 152, 152, 0.5);
+      }
+    }
   }
 }
 
@@ -503,8 +529,7 @@ $(function() {
 #SubscribeChannel {
   .channel-form {
     padding: 2rem;
-    background: url("https://images.unsplash.com/photo-1577278979786-3849d2d82634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=983&q=80")
-      top 50px left 20px;
+    background: url("../../assets/images/contact01.png");
     background-size: cover;
     text-align: center;
     @media (max-width: 767px) {

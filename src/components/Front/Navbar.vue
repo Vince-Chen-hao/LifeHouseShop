@@ -3,8 +3,8 @@
     <div class="marquee">
       <span><i class="fas fa-volume-up"></i> 活動快報</span>
       <marquee
-        >歡慶 LifeHouse 品牌創立 2 週年！限時大放送～ 輸入優惠代碼「HAPPY2YEARS」 享有線上購物 7
-        折優惠！！</marquee
+        >歡慶 LifeHouse 品牌創立 2 週年！限時大放送～
+        輸入優惠代碼「HAPPY2YEARS」 享有線上購物 7 折優惠！！</marquee
       >
     </div>
     <div class="naver-title">
@@ -31,29 +31,63 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
               <li class="nav-item active">
-                <router-link to="/" class="nav-link">品牌首頁 </router-link>
+                <router-link to="/" @click.native="closeMenu" class="nav-link"
+                  >品牌首頁
+                </router-link>
               </li>
 
               <li class="nav-item active">
-                <router-link to="/product_list" class="nav-link">購物市集 </router-link>
+                <router-link
+                  to="/product_list"
+                  @click.native="closeMenu"
+                  class="nav-link"
+                  >購物市集
+                </router-link>
               </li>
               <li class="nav-item active">
-                <router-link to="/coupon_page" class="nav-link">優惠活動 </router-link>
+                <router-link
+                  to="/coupon_page"
+                  @click.native="closeMenu"
+                  class="nav-link"
+                  >優惠活動
+                </router-link>
               </li>
               <li class="nav-item active">
-                <router-link to="/contact_page" class="nav-link">門市資訊 </router-link>
+                <router-link
+                  to="/contact_page"
+                  @click.native="closeMenu"
+                  class="nav-link"
+                  >門市資訊
+                </router-link>
               </li>
             </ul>
 
             <ul class="list-inline mb-0 mt-3 text-center">
-              <li class="list-inline-item" data-toggle="tooltip" title="訂單管理中心">
-                <router-link to="/login" class="nav-icon btn btn-outline-dark rounded-circle">
+              <li
+                class="list-inline-item"
+                data-toggle="tooltip"
+                title="訂單管理中心"
+              >
+                <router-link
+                  to="/login"
+                  @click.native="closeMenu"
+                  class="nav-icon btn btn-outline-dark rounded-circle"
+                >
                   <i class="fas fa-user"></i>
                 </router-link>
               </li>
-              <li class="list-inline-item" data-toggle="tooltip" title="前往結帳">
-                <router-link to="/order_check" class="nav-icon btn btn-outline-dark rounded-circle">
-                  <i class="fa fa-shopping-cart"> </i>
+              <li
+                class="list-inline-item"
+                data-toggle="tooltip"
+                title="前往結帳"
+              >
+                <router-link to="/order_check" @click.native="closeMenu">
+                  <div class="nav-icon btn btn-outline-dark rounded-circle">
+                    <i class="fa fa-shopping-cart"></i>
+                  </div>
+                  <span class="badge badge-pill" v-if="!cartNum == 0">
+                    {{ cartNum }}
+                  </span>
                 </router-link>
               </li>
             </ul>
@@ -65,11 +99,25 @@
 </template>
 
 <script>
+import $ from 'jquery'
+import { mapGetters } from 'vuex'
+
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
+  },
+
+  methods: {
+    closeMenu () {
+      $('#navbarSupportedContent').collapse('hide')
+    }
+  },
+
+  computed: {
+    ...mapGetters(['cartNum'])
   }
-};
+
+}
 </script>
 
 <style lang="scss" scoped>
@@ -137,5 +185,12 @@ export default {
       background: rgb(248, 234, 203);
     }
   }
+}
+
+.badge {
+  transform: translate(-13px, -15px);
+  font-size: 11px;
+  background-color: #df6b57;
+  color: #fff;
 }
 </style>

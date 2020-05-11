@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cart-dropdown">
-      <a class="fixPage" @click.prevent="openList()">
+      <a class="fixPage" @click.prevent="openList">
         <img class="img-fluid" src="../../assets/images/1.png" alt="cart" />
         <span class="badge badge-pill" v-if="!cartNum == 0">{{ cartNum }}</span>
       </a>
@@ -12,7 +12,7 @@
             <div class="dropdown-header">
               <div class="d-flex justify-content-between">
                 <h4>購物車清單</h4>
-                <a href="#" @click.prevent="closeList()">
+                <a href="#" @click.prevent="closeList">
                   <i style="font-size:18px" class="mt-1 far fa-window-close"></i>,
                 </a>
               </div>
@@ -61,7 +61,7 @@
               >前往結帳</a
             >
 
-            <a v-else class="btn btn-secondary btn-block" href="#" @click.prevent="closeList()"
+            <a v-else class="btn btn-secondary btn-block" href="#" @click.prevent="closeList"
               >繼續逛逛</a
             >
           </div>
@@ -72,65 +72,65 @@
 </template>
 
 <script>
-import $ from "jquery";
-import { mapGetters } from "vuex";
+import $ from 'jquery'
+import { mapGetters } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
-      deleteItem: ""
-    };
+      deleteItem: ''
+    }
   },
   methods: {
-    getCart() {
-      this.$store.dispatch("getCart");
+    getCart () {
+      this.$store.dispatch('getCart')
     },
 
-    deleteCartItem(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
-      vm.deleteItem = id;
+    deleteCartItem (id) {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
+      vm.deleteItem = id
 
       vm.$http.delete(api).then(response => {
         if (response.data.success) {
-          vm.getCart();
-          vm.$bus.$emit("message:push", response.data.message, "danger");
-          vm.deleteItem = "";
+          vm.getCart()
+          vm.$bus.$emit('message:push', response.data.message, 'danger')
+          vm.deleteItem = ''
         }
-      });
+      })
     },
 
-    openList() {
-      $(".dropdown-cart-menu").toggle();
-      // setTimeout(() => {
-      //   $(".dropdown-cart-menu").fadeOut(2000);
-      // }, 15000);
+    openList () {
+      $('.dropdown-cart-menu').toggle()
+      setTimeout(() => {
+        $('.dropdown-cart-menu').fadeOut(2000)
+      }, 15000)
     },
 
-    closeList() {
-      $(".dropdown-cart-menu").hide();
+    closeList () {
+      $('.dropdown-cart-menu').hide()
     },
 
-    goCheckout() {
-      const vm = this;
+    goCheckout () {
+      const vm = this
       if (vm.cartNum !== 0) {
-        vm.$router.push("/order_check");
+        vm.$router.push('/order_check')
       }
     }
   },
 
   computed: {
-    ...mapGetters(["cart", "total", "cartNum"])
+    ...mapGetters(['cart', 'total', 'cartNum'])
   },
 
-  created() {
-    this.getCart();
-    const vm = this;
-    vm.$bus.$on("updateCart", () => {
-      vm.getCart();
-    });
+  created () {
+    this.getCart()
+    const vm = this
+    vm.$bus.$on('updateCart', () => {
+      vm.getCart()
+    })
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

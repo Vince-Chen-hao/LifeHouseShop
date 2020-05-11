@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 export default {
-  name: "App",
+  name: 'App',
   components: {},
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
-    ...mapGetters(["isLoading"])
+    ...mapGetters(['isLoading'])
   }
-};
+}
 </script>
 
 <style lang="scss">

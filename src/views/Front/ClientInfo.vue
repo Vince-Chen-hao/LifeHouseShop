@@ -3,7 +3,7 @@
     <BuyProgress :progress="step"></BuyProgress>
 
     <div class="container">
-      <div class="row py-4">
+      <div class="row py-5">
         <div class="col-md-8">
           <h5 class="text-center">訂購資料</h5>
           <form class="col-md-12" @submit.prevent="createOrder">
@@ -117,64 +117,64 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import BuyProgress from "@/components/Front/BuyProgress.vue";
+import { mapGetters } from 'vuex'
+import BuyProgress from '@/components/Front/BuyProgress.vue'
 
 export default {
   components: {
     BuyProgress
   },
-  data() {
+  data () {
     return {
       form: {
         user: {
-          name: "",
-          email: "",
-          tel: "",
-          address: ""
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message: ""
+        message: ''
       },
       fullPage: true,
-      coupon_code: "",
-      step: "2"
-    };
+      coupon_code: '',
+      step: '2'
+    }
   },
 
   methods: {
-    getCart() {
-      this.$store.dispatch("getCart");
+    getCart () {
+      this.$store.dispatch('getCart')
     },
 
-    createOrder() {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`;
-      const order = vm.form;
+    createOrder () {
+      const vm = this
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`
+      const order = vm.form
       vm.$validator.validate().then(valid => {
         if (valid) {
           vm.$http.post(url, { data: order }).then(response => {
             if (response.data.success) {
-              vm.$router.push(`/order_complete/${response.data.orderId}`); //傳至路徑，取得後端資料庫裡的orderId
+              vm.$router.push(`/order_complete/${response.data.orderId}`) // 傳至路徑，取得後端資料庫裡的orderId
             }
-          });
+          })
         }
-      });
+      })
     }
   },
 
   filters: {
-    NumCeiling(num) {
-      return Math.ceil(num);
+    NumCeiling (num) {
+      return Math.ceil(num)
     }
   },
   computed: {
-    ...mapGetters(["cart"])
+    ...mapGetters(['cart'])
   },
 
-  created() {
-    this.getCart();
+  created () {
+    this.getCart()
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

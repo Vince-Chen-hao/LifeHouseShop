@@ -14,21 +14,21 @@
 
 <script>
 export default {
-  name: "Navbar",
-  data() {
-    return {};
+  name: 'Navbar',
+  data () {
+    return {}
   },
 
   methods: {
-    signout() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/logout`;
+    signout () {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
       vm.$http.post(api).then(response => {
         if (response.data.success) {
-          vm.$router.push("/login");
+          vm.$router.push('/login')
         }
-      });
+      })
     }
   }
-};
+}
 </script>

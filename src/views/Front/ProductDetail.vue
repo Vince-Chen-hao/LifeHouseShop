@@ -35,28 +35,20 @@
               {{ product.description }}
             </div>
 
-            <div
-              class="d-flex justify-content-between align-items-baseline mb-3"
-            >
-              <del class="p4 text-muted mr-3"
-                >原價 {{ product.origin_price | currency }}</del
-              >
-              <div class="h5 text-primary">
-                特惠價 {{ product.price | currency }}
-              </div>
+            <div class="d-flex justify-content-between align-items-baseline mb-3">
+              <del v-if="product.origin_price !== ''" class="p4 text-muted mr-3">原價 {{ product.origin_price | currency }}</del>
+              <div class="h5 text-primary ml-auto">特惠價 {{ product.price | currency }}</div>
             </div>
 
             <select class="form-control text-dark mt-4" v-model="optionNum">
               <option v-for="(i, index) in 8" :key="index" :value="i"
-                >選購{{ i }}{{ product.unit }}</option
+                >選購 {{ i }} {{ product.unit }}</option
               >
             </select>
 
             <div class="row my-4">
               <div class="col-6 d-flex">
-                <span class="h5"
-                  >總計 NT{{ (optionNum * product.price) | currency }}</span
-                >
+                <span class="h5">總計 NT{{ (optionNum * product.price) | currency }}</span>
               </div>
               <div class="col-6 text-right">
                 <button
@@ -82,11 +74,7 @@
             </a>
           </div>
           <div class="row my-4">
-            <div
-              class="col-md-4 mb-4"
-              v-for="item in filterData"
-              :key="item.id"
-            >
+            <div class="col-md-4 mb-4" v-for="item in filterData" :key="item.id">
               <div class="card-effect card">
                 <div class="container-img">
                   <div
@@ -95,9 +83,7 @@
                   ></div>
                 </div>
                 <div class="card-body l-point">
-                  <span class="badge category-tag mb-2">{{
-                    item.category
-                  }}</span>
+                  <span class="badge category-tag mb-2">{{ item.category }}</span>
                   <h5 class="card-title">
                     <h5 class="text-dark">{{ item.title }}</h5>
                   </h5>
@@ -134,9 +120,9 @@
                 <div>
                   <div class="d-flex">
                     <p>TingAnn Tai</p>
-                    <p class="text-muted mx-2">1 小時前</p>
-                    <p>留下的購買評價</p>
-                    <span class="pl-4"> 💛💛💛💛💛 </span>
+                    <p class="mobile-none text-muted mx-2">1 小時前</p>
+                    <p class="mobile-none">留下的購買評價</p>
+                    <span class="mobile-none pl-4"> 💛💛💛💛💛 </span>
                   </div>
                   <p>出貨速度超快😊😊😊😊</p>
                 </div>
@@ -157,9 +143,9 @@
                 <div>
                   <div class="d-flex">
                     <p>Janne Wang</p>
-                    <p class="text-muted mx-2">2 小時前</p>
-                    <p>留下的購買評價</p>
-                    <span class="pl-4"> 💛💛💛💛💛 </span>
+                    <p class="mobile-none text-muted mx-2">2 小時前</p>
+                    <p class="mobile-none">留下的購買評價</p>
+                    <span class="mobile-none pl-4"> 💛💛💛💛💛 </span>
                   </div>
                   <p>金屬質感非常好、CP值高</p>
                 </div>
@@ -173,16 +159,16 @@
               <hr />
               <div class="reviews d-flex  justify-content-center">
                 <img
-                  src="https://scontent.ftpe2-1.fna.fbcdn.net/v/t1.0-1/p160x160/29572637_1696901947038993_2974956021994709883_n.jpg?_nc_cat=104&_nc_sid=dbb9e7&_nc_ohc=EF0Ca10m21EAX-w2pgp&_nc_ht=scontent.ftpe2-1.fna&_nc_tp=6&oh=a8435c990f51619d6a1ce583c2f7deb1&oe=5ECEB732"
+                  src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.0-1/p160x160/95373480_10163360315300305_6408828840495284224_o.jpg?_nc_cat=111&_nc_sid=dbb9e7&_nc_ohc=dIO5W-XNBSYAX_nBdeu&_nc_ht=scontent.ftpe8-3.fna&_nc_tp=6&oh=b0bad164845911ba2785bbb5dcdf1517&oe=5EDA4650"
                   class="order-product-img mr-3"
                   alt=""
                 />
                 <div>
                   <div class="d-flex">
                     <p>Rihanna Wu</p>
-                    <p class="text-muted mx-2">2 小時前</p>
-                    <p>留下的購買評價</p>
-                    <span class="pl-4 "> 💛💛💛💛💛 </span>
+                    <p class="mobile-none text-muted mx-2">2 小時前</p>
+                    <p class="mobile-none">留下的購買評價</p>
+                    <span class="mobile-none pl-4 "> 💛💛💛💛💛 </span>
                   </div>
                   <p>客服好專業，有問必答💕</p>
                 </div>
@@ -203,11 +189,11 @@
                 <div>
                   <div class="d-flex">
                     <p>Michael Tai</p>
-                    <p class="text-muted mx-2">3 小時前</p>
-                    <p>留下的購買評價</p>
-                    <span class="pl-4"> 💛💛💛💛💛 </span>
+                    <p class="mobile-none text-muted mx-2">3 小時前</p>
+                    <p class="mobile-none">留下的購買評價</p>
+                    <span class="mobile-none pl-4"> 💛💛💛💛💛 </span>
                   </div>
-                  <p>包裝產品都精美，送禮很有面子～</p>
+                  <p>包裝精美，送禮很有面子~</p>
                 </div>
 
                 <img
@@ -246,10 +232,9 @@
                         data-parent="#accordion"
                       >
                         <div class="card-body">
-                          信用卡安全加密付款, 信用卡安全加密付款, 7-11 ibon
-                          代碼繳費, ATM 轉帳繳費, 全家 FamiPort 代碼繳費,
-                          信用卡分期 (3 期零利率), 信用卡分期 (6 期零利率), LINE
-                          Pay, Alipay 支付寶
+                          信用卡安全加密付款, 信用卡安全加密付款, 7-11 ibon 代碼繳費, ATM 轉帳繳費,
+                          全家 FamiPort 代碼繳費, 信用卡分期 (3 期零利率), 信用卡分期 (6 期零利率),
+                          LINE Pay, Alipay 支付寶
                         </div>
                       </div>
                     </div>
@@ -369,82 +354,82 @@
 </template>
 
 <script>
-import Shoppingcart from "@/components/Front/Shoppingcart.vue";
+import Shoppingcart from '@/components/Front/Shoppingcart.vue'
 
 export default {
   components: {
     Shoppingcart
   },
-  data() {
+  data () {
     return {
       product: {},
-      optionNum: "1",
+      optionNum: '1',
       Allproducts: []
-    };
+    }
   },
   methods: {
-    getProduct() {
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${vm.$route.params.MyproductId}`;
+    getProduct () {
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${vm.$route.params.MyproductId}`
       vm.$http.get(api).then(response => {
-        vm.product = response.data.product;
-        vm.$store.dispatch("updateLoading", false);
-      });
+        vm.product = response.data.product
+        vm.$store.dispatch('updateLoading', false)
+      })
     },
 
-    addtoCart(item, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
+    addtoCart (item, qty = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
       const cart = {
         data: {
           product_id: item.id,
           qty
         }
-      };
+      }
       vm.$http.post(api, cart).then(response => {
-        vm.$bus.$emit("message:push", response.data.message, "success");
-        vm.$bus.$emit("updateCart");
-        vm.$store.dispatch("updateLoading", false);
-      });
+        vm.$bus.$emit('message:push', response.data.message, 'success')
+        vm.$bus.$emit('updateCart')
+        vm.$store.dispatch('updateLoading', false)
+      })
     },
 
-    getAllproducts() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
-      const vm = this;
+    getAllproducts () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
+      const vm = this
       vm.$http.get(api).then(response => {
-        vm.Allproducts = response.data.products;
-      });
+        vm.Allproducts = response.data.products
+      })
     },
 
-    goDetail(id) {
-      this.$router.push(`/product_detail/${id}`);
-      this.getProduct();
+    goDetail (id) {
+      this.$router.push(`/product_detail/${id}`)
+      this.getProduct()
     },
 
-    linkProductlist() {
-      const vm = this;
-      vm.$router.push({ path: "/product_list" });
+    linkProductlist () {
+      const vm = this
+      vm.$router.push({ path: '/product_list' })
     }
   },
 
   computed: {
-    filterData() {
-      const vm = this;
+    filterData () {
+      const vm = this
       return vm.Allproducts.filter(item => {
-        return item.id !== vm.product.id;
+        return item.id !== vm.product.id
       }).filter(item => {
-        return item.category === vm.product.category;
-      });
+        return item.category === vm.product.category
+      })
     }
   },
 
-  created() {
-    this.getProduct();
-    this.getAllproducts();
+  created () {
+    this.getProduct()
+    this.getAllproducts()
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -562,6 +547,12 @@ export default {
 #faq {
   .fa {
     color: #f2ac34;
+  }
+}
+
+.mobile-none {
+  @media (max-width: 575.98px) {
+    display: none;
   }
 }
 </style>

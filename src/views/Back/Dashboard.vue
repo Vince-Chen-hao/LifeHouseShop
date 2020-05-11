@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import Sidebar from "@/components/Back/Sidebar.vue";
-import Navbar from "@/components/Back/Navbar.vue";
-import Alert from "@/components/Share/Alert.vue";
+import Sidebar from '@/components/Back/Sidebar.vue'
+import Navbar from '@/components/Back/Navbar.vue'
+import Alert from '@/components/Share/Alert.vue'
 
 export default {
   components: {
@@ -24,8 +24,8 @@ export default {
     Navbar,
     Alert
   },
-  data() {
-    return {};
+  data () {
+    return {}
   }
-};
+}
 </script>

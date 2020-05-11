@@ -32,16 +32,10 @@
           </td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button
-                class="btn btn-outline-primary btn-sm"
-                @click="openModal(false, item)"
-              >
+              <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">
                 編輯
               </button>
-              <button
-                class="btn btn-outline-danger btn-sm"
-                @click="openDelModal(item)"
-              >
+              <button class="btn btn-outline-danger btn-sm" @click="openDelModal(item)">
                 刪除</button
               ><!-- 回傳參數item物件告知函式該刪除哪筆資料 -->
             </div>
@@ -49,10 +43,7 @@
         </tr>
       </tbody>
     </table>
-    <Pagination
-      :page-props="pagination"
-      @pagenum_emit="getProducts"
-    ></Pagination>
+    <Pagination :page-props="pagination" @pagenum_emit="getProducts"></Pagination>
 
     <!-- Modal -->
     <div
@@ -69,12 +60,7 @@
             <h5 class="modal-title" id="exampleModalLabel">
               <span>新增產品</span>
             </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -94,10 +80,7 @@
                 <div class="form-group">
                   <label for="customFile"
                     >或 上傳圖片
-                    <i
-                      class="fas fa-spinner fa-spin"
-                      v-if="status.fileUploading"
-                    ></i>
+                    <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                   </label>
                   <input
                     type="file"
@@ -212,18 +195,10 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-info"
-              data-dismiss="modal"
-            >
+            <button type="button" class="btn btn-outline-info" data-dismiss="modal">
               取消
             </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="updateProduct"
-            >
+            <button type="button" class="btn btn-primary" @click="updateProduct">
               確認
             </button>
           </div>
@@ -244,12 +219,7 @@
             <h5 class="modal-title" id="exampleModalLabel">
               <span>刪除產品</span>
             </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -259,11 +229,7 @@
             商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-info"
-              data-dismiss="modal"
-            >
+            <button type="button" class="btn btn-outline-info" data-dismiss="modal">
               取消
             </button>
             <button type="button" class="btn btn-danger" @click="delProduct">
@@ -277,107 +243,107 @@
 </template>
 
 <script>
-import $ from "jquery";
-import Pagination from "@/components/Share/Pagination.vue";
-import { mapGetters } from "vuex";
+import $ from 'jquery'
+import Pagination from '@/components/Share/Pagination.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     Pagination
   },
-  data() {
+  data () {
     return {
       tempProduct: {},
       isNew: false,
       status: {
         fileUploading: false
       }
-    };
+    }
   },
   methods: {
-    getProducts(page = 1) {
-      this.$store.dispatch("getProducts", page);
+    getProducts (page = 1) {
+      this.$store.dispatch('getProducts', page)
     },
 
-    openModal(isNew, item) {
+    openModal (isNew, item) {
       if (isNew) {
-        this.tempProduct = {};
-        this.isNew = true;
+        this.tempProduct = {}
+        this.isNew = true
       } else {
-        this.tempProduct = Object.assign({}, item); //採用es6語法，將item傳自獨立的空物件裡，避免互相渲染
-        this.isNew = false;
+        this.tempProduct = Object.assign({}, item) // 採用es6語法，將item傳自獨立的空物件裡，避免互相渲染
+        this.isNew = false
       }
-      $("#productModal").modal("show");
+      $('#productModal').modal('show')
     },
 
-    openDelModal(item) {
-      const vm = this;
-      vm.tempProduct = Object.assign({}, item);
-      $("#delProductModal").modal("show");
+    openDelModal (item) {
+      const vm = this
+      vm.tempProduct = Object.assign({}, item)
+      $('#delProductModal').modal('show')
     },
 
-    updateProduct() {
-      //同時放入新增＆修改功能
-      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product`;
-      let httpMethod = "post";
-      const vm = this;
+    updateProduct () {
+      // 同時放入新增＆修改功能
+      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product`
+      let httpMethod = 'post'
+      const vm = this
       if (!vm.isNew) {
-        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
-        httpMethod = "put";
+        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`
+        httpMethod = 'put'
       }
 
       vm.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         if (response.data.success) {
-          $("#productModal").modal("hide");
-          vm.getProducts();
+          $('#productModal').modal('hide')
+          vm.getProducts()
         } else {
-          $("#productModal").modal("hide");
-          vm.getProducts();
+          $('#productModal').modal('hide')
+          vm.getProducts()
         }
-      });
+      })
     },
-    delProduct() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
+    delProduct () {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`
       vm.$http.delete(api).then(response => {
         if (response.data.success) {
-          $("#delProductModal").modal("hide");
-          vm.getProducts();
+          $('#delProductModal').modal('hide')
+          vm.getProducts()
         } else {
-          $("#delProductModal").modal("hide");
-          vm.getProducts();
+          $('#delProductModal').modal('hide')
+          vm.getProducts()
         }
-      });
+      })
     },
-    uploadFile() {
-      const uploadedFile = this.$refs.files.files[0];
-      const vm = this;
-      const formData = new FormData();
-      formData.append("file-to-upload", uploadedFile);
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`;
-      vm.status.fileUploading = true;
+    uploadFile () {
+      const uploadedFile = this.$refs.files.files[0]
+      const vm = this
+      const formData = new FormData()
+      formData.append('file-to-upload', uploadedFile)
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
+      vm.status.fileUploading = true
       vm.$http
         .post(url, formData, {
           headers: {
-            "Content-Type": "multipart/form-data"
+            'Content-Type': 'multipart/form-data'
           }
         })
         .then(response => {
-          vm.status.fileUploading = false;
+          vm.status.fileUploading = false
           if (response.data.success) {
-            vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl);
+            vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl)
           } else {
-            vm.$bus.$emit("message:push", response.data.message, "danger");
+            vm.$bus.$emit('message:push', response.data.message, 'danger')
           }
-        });
+        })
     }
   },
   computed: {
-    ...mapGetters(["products", "pagination"])
+    ...mapGetters(['products', 'pagination'])
   },
 
-  created() {
-    this.getProducts();
+  created () {
+    this.getProducts()
   }
-};
+}
 </script>

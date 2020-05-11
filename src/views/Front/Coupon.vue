@@ -104,29 +104,29 @@
 </template>
 
 <script>
-import Clipboard from "clipboard";
+import Clipboard from 'clipboard'
 
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
 
   methods: {
-    cobycode() {
-      let vm = this;
-      let clipboard = new Clipboard(".btn-coupon");
-      clipboard.on("success", function() {
-        clipboard.destroy(); // 釋放内存記憶體
-        vm.$bus.$emit("message:push", "已複製到剪貼簿", "success");
-      });
+    cobycode () {
+      const vm = this
+      const clipboard = new Clipboard('.btn-coupon')
+      clipboard.on('success', function () {
+        clipboard.destroy() // 釋放内存記憶體
+        vm.$bus.$emit('message:push', '已複製到剪貼簿', 'success')
+      })
 
-      clipboard.on("error", function() {
-        clipboard.destroy();
-        vm.$bus.$emit("message:push", "複製失敗", "warning");
-      });
+      clipboard.on('error', function () {
+        clipboard.destroy()
+        vm.$bus.$emit('message:push', '複製失敗', 'warning')
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -27,9 +27,9 @@
 
 <script>
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
-  props: ["progress"]
-};
+  props: ['progress']
+}
 </script>

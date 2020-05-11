@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import Navbar from "@/components/Front/Navbar.vue";
-import Alert from "@/components/Share/Alert.vue";
-import Footer from "@/components/Front/Footer.vue";
+import Navbar from '@/components/Front/Navbar.vue'
+import Alert from '@/components/Share/Alert.vue'
+import Footer from '@/components/Front/Footer.vue'
 
 export default {
   components: {
@@ -19,8 +19,8 @@ export default {
     Footer
   },
 
-  data() {
-    return {};
+  data () {
+    return {}
   }
-};
+}
 </script>

@@ -2,15 +2,15 @@
   <div>
     <BuyProgress :progress="step"></BuyProgress>
     <div class="py-2 check-order container ">
-      <table class="table table-sm my-4">
+      <table class="table table-sm my-5">
         <thead class="my-4">
           <tr>
             <th class="text-center">商品資訊</th>
-            <th width="50" class="text-center">數量</th>
-            <th width="100" class="text-right">單價</th>
-            <th width="100" class="text-right">折扣價</th>
-            <th width="100" class="text-right">小計</th>
-            <th width="100" class="text-center">刪除</th>
+            <th width="150" class="text-center ">數量</th>
+            <th width="120" class="text-center ">單價</th>
+            <th width="120" class="text-center ">折扣</th>
+            <th width="120" class="text-center ">小計</th>
+            <th width="150" class="text-center ">刪除</th>
           </tr>
         </thead>
 
@@ -19,20 +19,20 @@
             <td>
               <div class="d-flex">
                 <div
-                  class="order-product-img mr-3"
+                  class="order-product-img img-fluid mr-2"
                   :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
                 ></div>
-                <div>{{ item.product.title }}</div>
+                <div class="align-self-center">{{ item.product.title }}</div>
               </div>
             </td>
             <td class="align-middle text-center">{{ item.qty }}/{{ item.product.unit }}</td>
-            <td class="align-middle text-right">
+            <td class="align-middle text-center">
               {{ item.product.origin_price | currency }}
             </td>
-            <td class="align-middle text-right">
+            <td class="align-middle text-center">
               {{ item.product.price | currency }}
             </td>
-            <td class="align-middle text-right">{{ item.total | currency }}</td>
+            <td class="align-middle text-center">{{ item.total | currency }}</td>
 
             <td class="align-middle text-center">
               <a href="#" class="text-danger" @click.prevent="removeCart(item.id)">
@@ -98,69 +98,68 @@
 </template>
 
 <script>
-import BuyProgress from "@/components/Front/BuyProgress.vue";
-import { mapGetters } from "vuex";
+import BuyProgress from '@/components/Front/BuyProgress.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     BuyProgress
   },
-  data() {
+  data () {
     return {
-      coupon_code: "",
-      step: "1"
-    };
+      coupon_code: '',
+      step: '1'
+    }
   },
   methods: {
-    getCart() {
-      this.$store.dispatch("getCart");
+    getCart () {
+      this.$store.dispatch('getCart')
     },
-    removeCart(id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
+    removeCart (id) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
       vm.$http.delete(api).then(response => {
-        vm.$bus.$emit("message:push", response.data.message, "danger");
-        vm.$store.dispatch("updateLoading", false);
-        vm.getCart();
-      });
+        vm.$bus.$emit('message:push', response.data.message, 'danger')
+        vm.$store.dispatch('updateLoading', false)
+        vm.getCart()
+      })
     },
-    addCouponCode() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
-      let couponCode = {
+    addCouponCode () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
+      const couponCode = {
         data: {
           code: vm.coupon_code
         }
-      };
+      }
       vm.$http.post(api, couponCode).then(response => {
-        if (response.data.success == true) {
-          vm.$bus.$emit("message:push", response.data.message, "success");
-        } else if (response.data.success == false) {
-          vm.$bus.$emit("message:push", response.data.message, "danger");
+        if (response.data.success === true) {
+          vm.$bus.$emit('message:push', response.data.message, 'success')
+        } else if (response.data.success === false) {
+          vm.$bus.$emit('message:push', response.data.message, 'danger')
         }
-        vm.$store.dispatch("updateLoading", false);
-        vm.getCart();
-      });
+        vm.$store.dispatch('updateLoading', false)
+        vm.getCart()
+      })
     },
-    goCheckout() {
-      this.$router.push("/customer_order");
+    goCheckout () {
+      this.$router.push('/customer_order')
     }
   },
   filters: {
-    NumCeiling(num) {
-      return Math.ceil(num);
+    NumCeiling (num) {
+      return Math.ceil(num)
     }
   },
-
   computed: {
-    ...mapGetters(["cart"])
+    ...mapGetters(['cart'])
   },
-  created() {
-    this.getCart();
+  created () {
+    this.getCart()
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -169,6 +168,22 @@ export default {
   background-size: cover;
   width: 100px;
   height: 100px;
+
+  @media (max-width: 575.98px) {
+    width: 100px;
+    height: 60px;
+  }
+}
+
+thead {
+  th {
+    @media (max-width: 575.98px) {
+      font-size: 13px;
+      font-weight: bold;
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+  }
 }
 .order-product-table td {
   border: 0;

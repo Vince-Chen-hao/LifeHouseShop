@@ -41,52 +41,52 @@
 </template>
 
 <script>
-import Pagination from "@/components/Share/Pagination.vue";
+import Pagination from '@/components/Share/Pagination.vue'
 
 export default {
   components: {
     Pagination
   },
 
-  data() {
+  data () {
     return {
       orders: [],
       isNew: false,
       pagination: {}
-    };
+    }
   },
 
   methods: {
-    getOrders(page = 1) {
-      //ES6預設值，如無代數值便會使用原先1，如有帶入參數則用參數值
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`;
-      const vm = this;
-      vm.$store.dispatch("updateLoading", true);
+    getOrders (page = 1) {
+      // ES6預設值，如無代數值便會使用原先1，如有帶入參數則用參數值
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`
+      const vm = this
+      vm.$store.dispatch('updateLoading', true)
 
       vm.$http.get(api, vm.tempProduct).then(response => {
-        vm.orders = response.data.orders;
-        vm.pagination = response.data.pagination;
-        vm.$store.dispatch("updateLoading", false);
-      });
+        vm.orders = response.data.orders
+        vm.pagination = response.data.pagination
+        vm.$store.dispatch('updateLoading', false)
+      })
     }
   },
   computed: {
-    sortOrder() {
-      const vm = this;
-      let newOrder = [];
+    sortOrder () {
+      const vm = this
+      let newOrder = []
       if (vm.orders.length) {
         newOrder = vm.orders.sort((a, b) => {
-          const aIsPaid = a.is_paid ? 1 : 0;
-          const bIsPaid = b.is_paid ? 1 : 0;
-          return bIsPaid - aIsPaid;
-        });
+          const aIsPaid = a.is_paid ? 1 : 0
+          const bIsPaid = b.is_paid ? 1 : 0
+          return bIsPaid - aIsPaid
+        })
       }
-      return newOrder;
+      return newOrder
     }
   },
 
-  created() {
-    this.getOrders();
+  created () {
+    this.getOrders()
   }
-};
+}
 </script>
