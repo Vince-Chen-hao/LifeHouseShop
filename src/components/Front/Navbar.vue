@@ -99,25 +99,25 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import { mapGetters } from 'vuex'
+import $ from 'jquery';
+import { mapGetters } from 'vuex';
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
 
   methods: {
-    closeMenu () {
-      $('#navbarSupportedContent').collapse('hide')
-    }
+    closeMenu() {
+      $('#navbarSupportedContent').collapse('hide');
+    },
   },
 
   computed: {
-    ...mapGetters(['cartNum'])
-  }
+    ...mapGetters(['cartNum']),
+  },
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

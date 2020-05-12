@@ -26,26 +26,26 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from 'jquery';
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
   methods: {
-    closepopup () {
-      $('#popup-overlay').removeClass('d-flex')
-      $('#popup-overlay').addClass('d-none')
+    closepopup() {
+      $('#popup-overlay').removeClass('d-flex');
+      $('#popup-overlay').addClass('d-none');
       // 由於d-flex與d-none設定為!important因此用移除添加的方式做切換
-    }
+    },
   },
-  created () {
+  created() {
     setTimeout(() => {
-      $('#popup-overlay').removeClass('d-none')
-      $('#popup-overlay').addClass('d-flex')
-    }, 1500)
-  }
-}
+      $('#popup-overlay').removeClass('d-none');
+      $('#popup-overlay').addClass('d-flex');
+    }, 1500);
+  },
+};
 </script>
 
 <style lang="scss" scoped>

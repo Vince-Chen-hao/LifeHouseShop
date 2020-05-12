@@ -172,15 +172,15 @@
 </template>
 
 <script>
-import Pagination from '@/components/Share/Pagination.vue'
-import Shoppingcart from '@/components/Front/Shoppingcart.vue'
+import Pagination from '../../components/Share/Pagination.vue';
+import Shoppingcart from '../../components/Front/Shoppingcart.vue';
 
 export default {
   components: {
     Pagination,
-    Shoppingcart
+    Shoppingcart,
   },
-  data () {
+  data() {
     return {
       currentCat: '全部商品',
       Allproducts: [],
@@ -194,92 +194,88 @@ export default {
           name: '',
           email: '',
           tel: '',
-          address: ''
+          address: '',
         },
-        message: ''
+        message: '',
       },
       status: {
-        loadingItem: ''
-      }
-    }
+        loadingItem: '',
+      },
+    };
   },
   computed: {},
 
   methods: {
     // 取得分頁後的產品
-    getProducts (page = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
-      vm.$http.get(api).then(response => {
-        vm.products = response.data.products
-        vm.filterProducts = response.data.products
-        vm.pagination = response.data.pagination
-        vm.$store.dispatch('updateLoading', false)
-      })
+    getProducts(page = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`;
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
+      vm.$http.get(api).then((response) => {
+        vm.products = response.data.products;
+        vm.filterProducts = response.data.products;
+        vm.pagination = response.data.pagination;
+        vm.$store.dispatch('updateLoading', false);
+      });
     },
 
-    addtoCart (item, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
+    addtoCart(item, qty = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
       const cart = {
         data: {
           product_id: item.id,
-          qty
-        }
-      }
-      vm.$http.post(api, cart).then(response => {
-        vm.$bus.$emit('updateCart')
-        vm.$bus.$emit('message:push', response.data.message, 'success')
-        vm.$store.dispatch('updateLoading', false)
-      })
+          qty,
+        },
+      };
+      vm.$http.post(api, cart).then((response) => {
+        vm.$bus.$emit('updateCart');
+        vm.$bus.$emit('message:push', response.data.message, 'success');
+        vm.$store.dispatch('updateLoading', false);
+      });
     },
 
     // 取得全部產品
-    getAllproducts () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
-      const vm = this
-      vm.$http.get(api).then(response => {
-        vm.Allproducts = response.data.products
-      })
+    getAllproducts() {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+      const vm = this;
+      vm.$http.get(api).then((response) => {
+        vm.Allproducts = response.data.products;
+      });
     },
 
     // 取得分類的產品
-    filterPro (name) {
-      const vm = this
-      vm.currentCat = name
-      vm.$store.dispatch('updateLoading', true)
-      let newArray = []
+    filterPro(name) {
+      const vm = this;
+      vm.currentCat = name;
+      vm.$store.dispatch('updateLoading', true);
+      let newArray = [];
       if (name === '全部商品') {
-        vm.getProducts()
+        vm.getProducts();
       } else {
-        newArray = vm.Allproducts.filter(product => {
-          return product.category === name
-        })
-        vm.filterProducts = newArray
+        newArray = vm.Allproducts.filter((product) => product.category === name);
+        vm.filterProducts = newArray;
       }
-      vm.$store.dispatch('updateLoading', false)
+      vm.$store.dispatch('updateLoading', false);
     },
 
     // 關鍵字查詢產品
-    filterTitle () {
-      const vm = this
-      vm.filterProducts = vm.products.filter(item => {
-        return item.title.indexOf(vm.filterData) > -1 // indexOf查詢陣列位置，找不到名稱則顯示-1
-      })
-      vm.filterData = ''
+    filterTitle() {
+      const vm = this;
+      vm.filterProducts = vm.products.filter((item) => item.title.indexOf(vm.filterData) > -1);
+      vm.filterData = '';
     },
-    goDetail (id) {
-      this.$router.push(`/product_detail/${id}`)
-    }
+    goDetail(id) {
+      this.$router.push(`/product_detail/${id}`);
+    },
   },
 
-  created () {
-    this.getProducts()
-    this.getAllproducts()
-  }
-}
+  created() {
+    this.getProducts();
+    this.getAllproducts();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

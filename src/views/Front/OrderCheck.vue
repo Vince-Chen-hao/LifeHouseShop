@@ -98,68 +98,68 @@
 </template>
 
 <script>
-import BuyProgress from '@/components/Front/BuyProgress.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import BuyProgress from '../../components/Front/BuyProgress.vue';
 
 export default {
   components: {
-    BuyProgress
+    BuyProgress,
   },
-  data () {
+  data() {
     return {
       coupon_code: '',
-      step: '1'
-    }
+      step: '1',
+    };
   },
   methods: {
-    getCart () {
-      this.$store.dispatch('getCart')
+    getCart() {
+      this.$store.dispatch('getCart');
     },
-    removeCart (id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
-      vm.$http.delete(api).then(response => {
-        vm.$bus.$emit('message:push', response.data.message, 'danger')
-        vm.$store.dispatch('updateLoading', false)
-        vm.getCart()
-      })
+    removeCart(id) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
+      vm.$http.delete(api).then((response) => {
+        vm.$bus.$emit('message:push', response.data.message, 'danger');
+        vm.$store.dispatch('updateLoading', false);
+        vm.getCart();
+      });
     },
-    addCouponCode () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
+    addCouponCode() {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
       const couponCode = {
         data: {
-          code: vm.coupon_code
-        }
-      }
-      vm.$http.post(api, couponCode).then(response => {
+          code: vm.coupon_code,
+        },
+      };
+      vm.$http.post(api, couponCode).then((response) => {
         if (response.data.success === true) {
-          vm.$bus.$emit('message:push', response.data.message, 'success')
+          vm.$bus.$emit('message:push', response.data.message, 'success');
         } else if (response.data.success === false) {
-          vm.$bus.$emit('message:push', response.data.message, 'danger')
+          vm.$bus.$emit('message:push', response.data.message, 'danger');
         }
-        vm.$store.dispatch('updateLoading', false)
-        vm.getCart()
-      })
+        vm.$store.dispatch('updateLoading', false);
+        vm.getCart();
+      });
     },
-    goCheckout () {
-      this.$router.push('/customer_order')
-    }
+    goCheckout() {
+      this.$router.push('/customer_order');
+    },
   },
   filters: {
-    NumCeiling (num) {
-      return Math.ceil(num)
-    }
+    NumCeiling(num) {
+      return Math.ceil(num);
+    },
   },
   computed: {
-    ...mapGetters(['cart'])
+    ...mapGetters(['cart']),
   },
-  created () {
-    this.getCart()
-  }
-}
+  created() {
+    this.getCart();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

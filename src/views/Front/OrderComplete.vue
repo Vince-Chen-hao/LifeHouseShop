@@ -110,57 +110,57 @@
 </template>
 
 <script>
-import BuyProgress from '@/components/Front/BuyProgress.vue'
+import BuyProgress from '../../components/Front/BuyProgress.vue';
 
 export default {
   components: {
-    BuyProgress
+    BuyProgress,
   },
-  data () {
+  data() {
     return {
       fullPage: true,
       orderId: '',
       order: {
-        user: {}
+        user: {},
       },
-      step: '3'
-    }
+      step: '3',
+    };
   },
   methods: {
-    getOrder () {
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${vm.orderId}`
-      vm.$http.get(url).then(response => {
-        vm.order = response.data.order
-        vm.$store.dispatch('updateLoading', false)
-      })
+    getOrder() {
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${vm.orderId}`;
+      vm.$http.get(url).then((response) => {
+        vm.order = response.data.order;
+        vm.$store.dispatch('updateLoading', false);
+      });
     },
-    payOrder () {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${vm.orderId}`
-      vm.$store.dispatch('updateLoading', true)
+    payOrder() {
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${vm.orderId}`;
+      vm.$store.dispatch('updateLoading', true);
 
-      vm.$http.post(api).then(response => {
+      vm.$http.post(api).then((response) => {
         if (response.data.success) {
-          vm.getOrder() // 回傳已付款訊息
-          vm.$bus.$emit('message:push', '付款成功', 'success')
+          vm.getOrder(); // 回傳已付款訊息
+          vm.$bus.$emit('message:push', '付款成功', 'success');
         }
-        vm.$store.dispatch('updateLoading', false)
-      })
+        vm.$store.dispatch('updateLoading', false);
+      });
     },
 
-    linkHome () {
-      const vm = this
-      vm.$router.push({ path: '/' })
-    }
+    linkHome() {
+      const vm = this;
+      vm.$router.push({ path: '/' });
+    },
   },
 
-  created () {
-    this.orderId = this.$route.params.orderId
-    this.getOrder()
-  }
-}
+  created() {
+    this.orderId = this.$route.params.orderId;
+    this.getOrder();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

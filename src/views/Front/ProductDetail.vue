@@ -36,7 +36,9 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-baseline mb-3">
-              <del v-if="product.origin_price !== ''" class="p4 text-muted mr-3">原價 {{ product.origin_price | currency }}</del>
+              <del v-if="product.origin_price !== ''" class="p4 text-muted mr-3">
+                原價 {{ product.origin_price | currency }}
+              </del>
               <div class="h5 text-primary ml-auto">特惠價 {{ product.price | currency }}</div>
             </div>
 
@@ -331,7 +333,10 @@
                         <div class="card-body">
                           <ul>
                             <li>
-                              依《消費者保護法》規定，消費者享有商品簽收翌日起算七天之鑑賞期，期間申請退購無須負擔運費，欲退購者請於七日內提出，逾期恕不受理。注意！猶豫期並非試用期，故退回的商品必須是全新的狀態且完整包裝（含商品本體、配件、贈品、保證書、原廠包裝及所有附隨文件或資料），切勿缺漏任何配件、自行拆解商品、或損毀原廠外盒。如有遺失、毀損或缺件，可能影響您退貨的權益，也將依照損毀程度扣除為復原所需之整新費用。
+                              依《消費者保護法》規定，消費者享有商品簽收翌日起算七天之鑑賞期，期間申請退購無須負擔運費，欲退購者請於七日內提出，
+                              逾期恕不受理。注意！猶豫期並非試用期，故退回的商品必須是全新的狀態且完整包裝
+                              （含商品本體、配件、贈品、保證書、原廠包裝及所有附隨文件或資料），切勿缺漏任何配件、自行拆解商品、或損毀原廠外盒。
+                              如有遺失、毀損或缺件，可能影響您退貨的權益，也將依照損毀程度扣除為復原所需之整新費用。
                             </li>
                             <li>
                               如購買的商品是電腦軟體、遊戲、影音光碟、食品、耗材、個人衛生用品及客製化商品，拆封後除瑕疵品外恕無法辦理退換貨。
@@ -354,82 +359,79 @@
 </template>
 
 <script>
-import Shoppingcart from '@/components/Front/Shoppingcart.vue'
+import Shoppingcart from '../../components/Front/Shoppingcart.vue';
 
 export default {
   components: {
-    Shoppingcart
+    Shoppingcart,
   },
-  data () {
+  data() {
     return {
       product: {},
       optionNum: '1',
-      Allproducts: []
-    }
+      Allproducts: [],
+    };
   },
   methods: {
-    getProduct () {
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${vm.$route.params.MyproductId}`
-      vm.$http.get(api).then(response => {
-        vm.product = response.data.product
-        vm.$store.dispatch('updateLoading', false)
-      })
+    getProduct() {
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${vm.$route.params.MyproductId}`;
+      vm.$http.get(api).then((response) => {
+        vm.product = response.data.product;
+        vm.$store.dispatch('updateLoading', false);
+      });
     },
 
-    addtoCart (item, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
+    addtoCart(item, qty = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
       const cart = {
         data: {
           product_id: item.id,
-          qty
-        }
-      }
-      vm.$http.post(api, cart).then(response => {
-        vm.$bus.$emit('message:push', response.data.message, 'success')
-        vm.$bus.$emit('updateCart')
-        vm.$store.dispatch('updateLoading', false)
-      })
+          qty,
+        },
+      };
+      vm.$http.post(api, cart).then((response) => {
+        vm.$bus.$emit('message:push', response.data.message, 'success');
+        vm.$bus.$emit('updateCart');
+        vm.$store.dispatch('updateLoading', false);
+      });
     },
 
-    getAllproducts () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
-      const vm = this
-      vm.$http.get(api).then(response => {
-        vm.Allproducts = response.data.products
-      })
+    getAllproducts() {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+      const vm = this;
+      vm.$http.get(api).then((response) => {
+        vm.Allproducts = response.data.products;
+      });
     },
 
-    goDetail (id) {
-      this.$router.push(`/product_detail/${id}`)
-      this.getProduct()
+    goDetail(id) {
+      this.$router.push(`/product_detail/${id}`);
+      this.getProduct();
     },
 
-    linkProductlist () {
-      const vm = this
-      vm.$router.push({ path: '/product_list' })
-    }
+    linkProductlist() {
+      const vm = this;
+      vm.$router.push({ path: '/product_list' });
+    },
   },
 
   computed: {
-    filterData () {
-      const vm = this
-      return vm.Allproducts.filter(item => {
-        return item.id !== vm.product.id
-      }).filter(item => {
-        return item.category === vm.product.category
-      })
-    }
+    filterData() {
+      const vm = this;
+      // eslint-disable-next-line max-len
+      return vm.Allproducts.filter((item) => item.id !== vm.product.id).filter((item) => item.category === vm.product.category);
+    },
   },
 
-  created () {
-    this.getProduct()
-    this.getAllproducts()
-  }
-}
+  created() {
+    this.getProduct();
+    this.getAllproducts();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

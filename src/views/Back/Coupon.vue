@@ -175,91 +175,91 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import Pagination from '@/components/Share/Pagination.vue'
+import $ from 'jquery';
+import Pagination from '../../components/Share/Pagination.vue';
 
 export default {
   components: {
-    Pagination
+    Pagination,
   },
-  data () {
+  data() {
     return {
       coupons: [],
       tempcoupons: {},
       isNew: false,
       pagination: {},
       isLoading: false,
-      is_enabled: 0
-    }
+      is_enabled: 0,
+    };
   },
   methods: {
-    getCoupons () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
-      vm.$http.get(api).then(response => {
-        vm.$store.dispatch('updateLoading', false)
-        vm.coupons = response.data.coupons
-        vm.pagination = response.data.pagination
-      })
+    getCoupons() {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
+      const vm = this;
+      vm.$store.dispatch('updateLoading', true);
+      vm.$http.get(api).then((response) => {
+        vm.$store.dispatch('updateLoading', false);
+        vm.coupons = response.data.coupons;
+        vm.pagination = response.data.pagination;
+      });
     },
-    openModal (isNew, item) {
+    openModal(isNew, item) {
       if (isNew) {
-        this.tempcoupons = {}
-        this.isNew = true
+        this.tempcoupons = {};
+        this.isNew = true;
       } else {
-        this.tempcoupons = Object.assign({}, item) // es6語法，為了避免item與左方物件相同
-        this.isNew = false
+        this.tempcoupons = { ...item }; // es6語法，為了避免item與左方物件相同
+        this.isNew = false;
       }
 
-      $('#couponsModal').modal('show')
+      $('#couponsModal').modal('show');
     },
 
-    openDelModal (item) {
-      const vm = this
-      vm.tempcoupons = item
-      $('#delCouponModal').modal('show')
+    openDelModal(item) {
+      const vm = this;
+      vm.tempcoupons = item;
+      $('#delCouponModal').modal('show');
     },
 
-    delCoupon () {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempcoupons.id}`
-      vm.$http.delete(api).then(response => {
+    delCoupon() {
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempcoupons.id}`;
+      vm.$http.delete(api).then((response) => {
         if (response.data.success) {
-          $('#delCouponModal').modal('hide')
-          vm.$bus.$emit('message:push', response.data.message, 'danger')
-          vm.getCoupons()
+          $('#delCouponModal').modal('hide');
+          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.getCoupons();
         } else {
-          $('#delCouponModal').modal('hide')
-          vm.getCoupons()
+          $('#delCouponModal').modal('hide');
+          vm.getCoupons();
         }
-      })
+      });
     },
 
-    updateCoupon () {
-      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`
-      let httpMethod = 'post'
-      const vm = this
+    updateCoupon() {
+      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`;
+      let httpMethod = 'post';
+      const vm = this;
       if (!vm.isNew) {
-        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempcoupons.id}`
-        httpMethod = 'put'
+        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempcoupons.id}`;
+        httpMethod = 'put';
       }
 
       // 使用post要依照API內容的建置來寫上匯入格式
-      vm.$http[httpMethod](api, { data: vm.tempcoupons }).then(response => {
+      vm.$http[httpMethod](api, { data: vm.tempcoupons }).then((response) => {
         if (response.data.success) {
-          $('#couponsModal').modal('hide')
-          vm.getCoupons()
-          vm.$bus.$emit('message:push', response.data.message, 'success')
+          $('#couponsModal').modal('hide');
+          vm.getCoupons();
+          vm.$bus.$emit('message:push', response.data.message, 'success');
         } else {
-          $('#couponsModal').modal('hide')
-          vm.getCoupons()
+          $('#couponsModal').modal('hide');
+          vm.getCoupons();
         }
-      })
-    }
+      });
+    },
   },
-  created () {
-    this.getCoupons()
-  }
-}
+  created() {
+    this.getCoupons();
+  },
+};
 </script>

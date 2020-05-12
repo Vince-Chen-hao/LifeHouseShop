@@ -38,15 +38,15 @@
 <script>
 export default {
   props: ['pageProps'],
-  data () {
-    return {}
+  data() {
+    return {};
   },
 
   methods: {
-    pageEmit (page) {
-      if (page === this.pageProps.current_page) return
-      this.$emit('pagenum_emit', page)
-    }
-  }
-}
+    pageEmit(page) {
+      if (page === this.pageProps.current_page) return;
+      this.$emit('pagenum_emit', page);
+    },
+  },
+};
 </script>

@@ -72,65 +72,65 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import { mapGetters } from 'vuex'
+import $ from 'jquery';
+import { mapGetters } from 'vuex';
 
 export default {
-  data () {
+  data() {
     return {
-      deleteItem: ''
-    }
+      deleteItem: '',
+    };
   },
   methods: {
-    getCart () {
-      this.$store.dispatch('getCart')
+    getCart() {
+      this.$store.dispatch('getCart');
     },
 
-    deleteCartItem (id) {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      vm.deleteItem = id
+    deleteCartItem(id) {
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
+      vm.deleteItem = id;
 
-      vm.$http.delete(api).then(response => {
+      vm.$http.delete(api).then((response) => {
         if (response.data.success) {
-          vm.getCart()
-          vm.$bus.$emit('message:push', response.data.message, 'danger')
-          vm.deleteItem = ''
+          vm.getCart();
+          vm.$bus.$emit('message:push', response.data.message, 'danger');
+          vm.deleteItem = '';
         }
-      })
+      });
     },
 
-    openList () {
-      $('.dropdown-cart-menu').toggle()
+    openList() {
+      $('.dropdown-cart-menu').toggle();
       setTimeout(() => {
-        $('.dropdown-cart-menu').fadeOut(2000)
-      }, 15000)
+        $('.dropdown-cart-menu').fadeOut(2000);
+      }, 15000);
     },
 
-    closeList () {
-      $('.dropdown-cart-menu').hide()
+    closeList() {
+      $('.dropdown-cart-menu').hide();
     },
 
-    goCheckout () {
-      const vm = this
+    goCheckout() {
+      const vm = this;
       if (vm.cartNum !== 0) {
-        vm.$router.push('/order_check')
+        vm.$router.push('/order_check');
       }
-    }
+    },
   },
 
   computed: {
-    ...mapGetters(['cart', 'total', 'cartNum'])
+    ...mapGetters(['cart', 'total', 'cartNum']),
   },
 
-  created () {
-    this.getCart()
-    const vm = this
+  created() {
+    this.getCart();
+    const vm = this;
     vm.$bus.$on('updateCart', () => {
-      vm.getCart()
-    })
-  }
-}
+      vm.getCart();
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>

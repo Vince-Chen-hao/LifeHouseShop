@@ -8,19 +8,19 @@
 </template>
 
 <script>
-import Navbar from '@/components/Front/Navbar.vue'
-import Alert from '@/components/Share/Alert.vue'
-import Footer from '@/components/Front/Footer.vue'
+import Alert from '../../components/Share/Alert.vue';
+import Footer from '../../components/Front/Footer.vue';
+import Navbar from '../../components/Front/Navbar.vue';
 
 export default {
   components: {
     Navbar,
     Alert,
-    Footer
+    Footer,
   },
 
-  data () {
-    return {}
-  }
-}
+  data() {
+    return {};
+  },
+};
 </script>

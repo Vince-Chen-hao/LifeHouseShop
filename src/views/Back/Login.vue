@@ -43,26 +43,26 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       user: {
         username: '',
-        password: ''
-      }
-    }
+        password: '',
+      },
+    };
   },
   methods: {
-    signin () {
-      const api = `${process.env.VUE_APP_APIPATH}/admin/signin` // 依登入api說明新增(左：路徑，右：API功能)
-      const vm = this
-      vm.$http.post(api, vm.user).then(response => {
+    signin() {
+      const api = `${process.env.VUE_APP_APIPATH}/admin/signin`; // 依登入api說明新增(左：路徑，右：API功能)
+      const vm = this;
+      vm.$http.post(api, vm.user).then((response) => {
         if (response.data.success) {
-          vm.$router.push('/admin/products')
+          vm.$router.push('/admin/products');
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

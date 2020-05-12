@@ -186,7 +186,8 @@
                 陶瓷是中國傳統的工藝品，原本製作充當日常器皿，但後來有藝匠窮其畢生的精力，鑽研講究燒製的方法，使成品精美、細緻無比。
               </p>
               <p>
-                陶瓷也可製做各種家庭用品，例如白地青花或福壽五彩等有中國風味的碗盤酒具，或是具有歐洲風味的咖啡杯盤與馬克杯，使飲食起居更具情趣，使室內增添不少生氣與光彩。陶瓷已成為生活中不可或缺的一部份。
+                陶瓷也可製做各種家庭用品，例如白地青花或福壽五彩等有中國風味的碗盤酒具，或是具有歐洲風味的咖啡杯盤與馬克杯，使飲食起居更具情趣，使室內增添不少生氣與光彩。
+                陶瓷已成為生活中不可或缺的一部份。
               </p>
               <p>
                 影片講述陶瓷從捏泥到窯燒的製程，陶藝家對細節的堅持將最純粹的藝品帶入日常中，值得細細品味。
@@ -241,14 +242,14 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import PopupNews from '@/components/Front/PopupNews.vue'
+import $ from 'jquery';
+import PopupNews from '../../components/Front/PopupNews.vue';
 
 export default {
   components: {
-    PopupNews
+    PopupNews,
   },
-  data () {
+  data() {
     return {
       categories: [
         { name: 'DISHES', title: '碗盤', icon: 'fas fa-mortar-pestle fa-2x' },
@@ -256,41 +257,41 @@ export default {
         {
           name: 'SPOON',
           title: '刀叉匙筷',
-          icon: 'fas fa-utensil-spoon fa-2x'
+          icon: 'fas fa-utensil-spoon fa-2x',
         },
-        { name: 'TOOLS', title: '料理廚具', icon: 'fas fa-home fa-2x' }
-      ]
-    }
+        { name: 'TOOLS', title: '料理廚具', icon: 'fas fa-home fa-2x' },
+      ],
+    };
   },
   methods: {
-    linkProductlist () {
-      const vm = this
-      vm.$router.push({ path: '/product_list' })
+    linkProductlist() {
+      const vm = this;
+      vm.$router.push({ path: '/product_list' });
     },
-    subscriptComplete () {
-      const vm = this
-      vm.$bus.$emit('message:push', '訂閱成功，感謝你的支持', 'success')
-    }
+    subscriptComplete() {
+      const vm = this;
+      vm.$bus.$emit('message:push', '訂閱成功，感謝你的支持', 'success');
+    },
   },
 
-  created () {
-    $(function () {
+  created() {
+    $(() => {
       $('#SliderTop').click(() => {
-        $('html,body').animate({ scrollTop: 0 }, 'slow')
-        return false
-      })
+        $('html,body').animate({ scrollTop: 0 }, 'slow');
+        return false;
+      });
 
       // 偵測卷軸滑動時，往下滑超過400px就讓按鈕出現//
       $(window).scroll(() => {
         if ($(this).scrollTop() > 400) {
-          $('#SliderTop').fadeIn()
+          $('#SliderTop').fadeIn();
         } else {
-          $('#SliderTop').fadeOut()
+          $('#SliderTop').fadeOut();
         }
-      })
-    })
-  }
-}
+      });
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
