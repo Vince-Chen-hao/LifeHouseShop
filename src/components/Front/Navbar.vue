@@ -71,7 +71,7 @@
                 <router-link
                   to="/login"
                   @click.native="closeMenu"
-                  class="nav-icon btn btn-outline-dark rounded-circle"
+                  class="nav-icon btn btn-outline-info rounded-circle"
                 >
                   <i class="fas fa-user"></i>
                 </router-link>
@@ -82,7 +82,7 @@
                 title="前往結帳"
               >
                 <router-link to="/order_check" @click.native="closeMenu">
-                  <div class="nav-icon btn btn-outline-dark rounded-circle">
+                  <div class="nav-icon btn btn-outline-info rounded-circle">
                     <i class="fa fa-shopping-cart"></i>
                   </div>
                   <span class="badge badge-pill" v-if="!cartNum == 0">
@@ -140,6 +140,9 @@ export default {
 .logo {
   font-size: 22px;
   font-weight: bold;
+  font-family: serif;
+  text-shadow: 1px 1px 1px rgb(209, 207, 207);
+
 }
 
 .naver-title {

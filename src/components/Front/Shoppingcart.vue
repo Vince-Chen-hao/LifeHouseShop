@@ -33,7 +33,7 @@
               >
                 <!-- 若點擊後函式值等於產品id則畫面轉圈，以id作判定以避免全進行轉圈 -->
                 <i class="fas fa-spinner fa-pulse" v-if="deleteItem == item.id"></i>
-                <!-- 如果不等於產品id就顯示垃圾桶圖樣 -->
+                <!-- 若不等於產品id顯示垃圾桶圖樣 -->
                 <i v-else class="fas fa-trash-alt"></i>
               </div>
               <div
@@ -41,7 +41,7 @@
                 :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
               ></div>
               <div class="mr-2">
-                <h6 class=" mb-0">{{ item.product.title }}</h6>
+                <div class="h6 mb-0">{{ item.product.title }}</div>
                 <span>數量：{{ item.qty }}</span>
               </div>
               <span class="ml-auto text-success">
@@ -124,8 +124,8 @@ export default {
   },
 
   created() {
-    this.getCart();
     const vm = this;
+    vm.getCart();
     vm.$bus.$on('updateCart', () => {
       vm.getCart();
     });
@@ -163,7 +163,7 @@ export default {
   position: relative;
   bottom: 80px;
   right: 85px;
-  box-shadow: 0rem 0rem 0.625rem 0.1875rem gray;
+  box-shadow: 0.6rem 0rem 0.625rem 0.1875rem gray;
   background-color: #fff;
   z-index: 1000;
 

@@ -194,8 +194,8 @@ export default {
   },
   methods: {
     getCoupons() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
       vm.$store.dispatch('updateLoading', true);
       vm.$http.get(api).then((response) => {
         vm.$store.dispatch('updateLoading', false);
@@ -237,9 +237,9 @@ export default {
     },
 
     updateCoupon() {
+      const vm = this;
       let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`;
       let httpMethod = 'post';
-      const vm = this;
       if (!vm.isNew) {
         api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempcoupons.id}`;
         httpMethod = 'put';

@@ -31,7 +31,7 @@
             <h3>{{ product.title }}</h3>
             <hr />
             <div class="category-content">
-              <span class="text-dark d-block">【產品描述】</span>
+              <span class="text-dark d-block">【產品描述】{{cart.total}}</span>
               {{ product.description }}
             </div>
 
@@ -56,7 +56,7 @@
                 <button
                   type="button"
                   class="btn btn-primary"
-                  @click="addtoCart(product, optionNum)"
+                  @click="addtoCart(product.id, optionNum)"
                 >
                   <i class="fas fa-plus"></i> 加入購物車
                 </button>
@@ -359,6 +359,8 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
 import Shoppingcart from '../../components/Front/Shoppingcart.vue';
 
 export default {
@@ -368,7 +370,7 @@ export default {
   data() {
     return {
       product: {},
-      optionNum: '1',
+      optionNum: 1,
       Allproducts: [],
     };
   },
@@ -383,26 +385,13 @@ export default {
       });
     },
 
-    addtoCart(item, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      const vm = this;
-      vm.$store.dispatch('updateLoading', true);
-      const cart = {
-        data: {
-          product_id: item.id,
-          qty,
-        },
-      };
-      vm.$http.post(api, cart).then((response) => {
-        vm.$bus.$emit('message:push', response.data.message, 'success');
-        vm.$bus.$emit('updateCart');
-        vm.$store.dispatch('updateLoading', false);
-      });
+    addtoCart(id, qty) {
+      this.$store.dispatch('addtoCart', { id, qty });
     },
 
     getAllproducts() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
       vm.$http.get(api).then((response) => {
         vm.Allproducts = response.data.products;
       });
@@ -411,6 +400,10 @@ export default {
     goDetail(id) {
       this.$router.push(`/product_detail/${id}`);
       this.getProduct();
+    },
+
+    getCart() {
+      this.$store.dispatch('getCart');
     },
 
     linkProductlist() {
@@ -422,13 +415,17 @@ export default {
   computed: {
     filterData() {
       const vm = this;
-      // eslint-disable-next-line max-len
-      return vm.Allproducts.filter((item) => item.id !== vm.product.id).filter((item) => item.category === vm.product.category);
+      return vm.Allproducts.filter(
+        (item) => item.id !== vm.product.id,
+      ).filter((item) => item.category === vm.product.category);
     },
+    ...mapGetters(['cart']),
   },
+
 
   created() {
     this.getProduct();
+    this.getCart();
     this.getAllproducts();
   },
 };

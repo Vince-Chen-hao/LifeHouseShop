@@ -6,17 +6,19 @@
     <div id="SliderTop">
       <img class="SliderTop-img" src="../../assets/images/up3.png" alt="cart" />
     </div>
-
     <section id="CarouselSlider">
       <div class="container mb-4">
-        <div id="carouselHomeControls" class="carousel slide" data-ride="carousel">
+        <div
+          id="carouselHomeControls"
+          class="carousel slide"
+          data-ride="carousel"
+        >
           <div class="carousel-inner">
             <div class="carousel-item active w-100 l-bg-cover carousel01">
               <div class="inside-banner">
                 <p>品味，慢活</p>
               </div>
             </div>
-
             <div class="carousel-item l-bg-cover w-100 carousel02">
               <div class="inside-banner">
                 <p>品嘗，簡居</p>
@@ -83,21 +85,27 @@
           </div>
           <div class="col-sm-4 my-1">
             <div class="l-bg-cover rounded type02 img-thumbnail">
-              <router-link class="black-cover" style="text-decoration: none" to="/product_list">
+              <router-link
+                class="black-cover"
+                style="text-decoration: none"
+                to="/product_list"
+              >
                 <span class="h4">釉燒</span>
               </router-link>
             </div>
           </div>
-
           <div class="col-sm-4 my-1">
             <div class="l-bg-cover rounded type03 img-thumbnail">
-              <router-link class="black-cover" style="text-decoration: none" to="/product_list">
+              <router-link
+                class="black-cover"
+                style="text-decoration: none"
+                to="/product_list"
+              >
                 <span class="h4">磨砂</span>
               </router-link>
             </div>
           </div>
         </div>
-
         <div class="row mb-4">
           <div class="col-md-6 my-1">
             <div class="l-bg-cover rounded type04 img-thumbnail">
@@ -108,7 +116,11 @@
           </div>
           <div class="col-md-6 my-1">
             <div class="l-bg-cover rounded type05 img-thumbnail">
-              <router-link class="black-cover" style="text-decoration: none" to="/product_list">
+              <router-link
+                class="black-cover"
+                style="text-decoration: none"
+                to="/product_list"
+              >
                 <span class="h4">典雅皇室</span>
               </router-link>
             </div>
@@ -118,42 +130,49 @@
     </section>
 
     <section id="NewsInfo">
-      <div class="container">
-        <h3>最新消息</h3>
-        <hr />
-        <div class="row py-3">
-          <div class="col-md-6 pb-5 text-center justify-content-center">
-            <div>
-              <h4>
-                【新品上市】經典歐風淺盤
-              </h4>
-              <img class="img-fluid rounded my-2 l-bg-cover" src="../../assets/images/gift15.jpg" />
-
-              <h5 class="my-3">限量推出『雲紋陶瓷淺盤』</h5>
-
-              <p>低溫素燒，高溫釉燒，展現清澈透亮的釉彩質感</p>
-              <p>百搭各種餐具，限量8組，送禮自用兩相宜</p>
-              <router-link to="/product_list" class="btn btn-outline-primary"
-                >手刀搶購 >></router-link
-              >
+      <div class="NewsIist">
+        <div class="container">
+          <h3>最新消息</h3>
+          <hr />
+          <div class="row py-3">
+            <div class="col-md-6 pb-5 text-center justify-content-center">
+              <div>
+                <h4>
+                  【新品上市】經典歐風淺盤
+                </h4>
+                <img
+                  class="img-fluid rounded my-2 l-bg-cover"
+                  src="../../assets/images/gift15.jpg"
+                />
+                <h5 class="my-3">限量推出『雲紋陶瓷淺盤』</h5>
+                <p>低溫素燒，高溫釉燒，展現清澈透亮的釉彩質感</p>
+                <p>百搭各種餐具，限量8組，送禮自用兩相宜</p>
+                <router-link to="/product_list" class="btn btn-outline-primary"
+                  >手刀搶購 >></router-link
+                >
+              </div>
             </div>
-          </div>
-
-          <div class="col-md-6 pb-5 text-center justify-content-center">
-            <div>
-              <h4>
-                <span>
-                  寵愛媽咪選好鍋 <i class=" flicker fas fa-heart"></i> <span> </span>
-                  <i class=" flicker fas fa-heart"></i
-                ></span>
-              </h4>
-              <img class="img-fluid rounded my-2" src="../../assets/images/gift16.jpg" />
-              <h5 class="my-3">孝親限定『法國原木柄不沾鍋』</h5>
-              <p>慢煮、香煎等各式料理手法都能夠輕鬆駕馭</p>
-              <p>送好鍋來慰勞辛苦的媽媽就趁現在，限時搶購85折</p>
-              <router-link to="/product_list" class="btn btn btn-outline-primary"
-                >前往市集 >></router-link
-              >
+            <div class="col-md-6 pb-5 text-center justify-content-center">
+              <div>
+                <h4>
+                  <span>
+                    寵愛媽咪選好鍋 <i class=" flicker fas fa-heart"></i>
+                    <span> </span> <i class=" flicker fas fa-heart"></i
+                  ></span>
+                </h4>
+                <img
+                  class="img-fluid rounded my-2"
+                  src="../../assets/images/gift16.jpg"
+                />
+                <h5 class="my-3">孝親限定『法國原木柄不沾鍋』</h5>
+                <p>慢煮、香煎等各式料理手法都能夠輕鬆駕馭</p>
+                <p>送好鍋來慰勞辛苦的媽媽就趁現在，限時搶購85折</p>
+                <router-link
+                  to="/product_list"
+                  class="btn btn btn-outline-primary"
+                  >前往市集 >></router-link
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -202,16 +221,23 @@
       <div class="container my-4">
         <div class="row no-gutters brand-block">
           <div class="col-md-7 brand-img">
-            <img class="img-fluid rounded" src="../../assets/images/image20.png" />
+            <img
+              class="img-fluid rounded"
+              src="../../assets/images/image20.png"
+            />
           </div>
-          <div class="col-md-6 rounded brand-text d-flex flex-column justify-content-center">
+          <div
+            class="col-md-6 rounded brand-text d-flex flex-column justify-content-center"
+          >
             <div class="h3 mb-4">
               精挑細選造就食材
               <br />與器皿最美好的連結
             </div>
             <div>配色、擺盤、光影的視覺饗宴。</div>
             <small class="mb-5">美味しい</small>
-            <router-link class="btn btn-outline-dark btn-pill ml-auto" to="/product_list"
+            <router-link
+              class="btn btn-outline-dark btn-pill ml-auto"
+              to="/product_list"
               >立即挑選</router-link
             >
           </div>
@@ -229,9 +255,20 @@
             喜歡我們的商品嗎？歡迎訂閱我們的頻道並多多分享，新品資訊絕不錯過！
           </p>
           <form class="form-inline justify-content-center">
-            <input type="text" class="form-control my-2 mr-3 " placeholder="輸入暱稱" />
-            <input type="text" class="form-control my-2 mr-3 " placeholder="輸入信箱" />
-            <button class="btn btn-primary  my-2" @click.prevent="subscriptComplete">
+            <input
+              type="text"
+              class="form-control my-2 mr-3 "
+              placeholder="輸入暱稱"
+            />
+            <input
+              type="text"
+              class="form-control my-2 mr-3 "
+              placeholder="輸入信箱"
+            />
+            <button
+              class="btn btn-primary  my-2"
+              @click.prevent="subscriptComplete"
+            >
               送出
             </button>
           </form>
@@ -273,14 +310,12 @@ export default {
       vm.$bus.$emit('message:push', '訂閱成功，感謝你的支持', 'success');
     },
   },
-
   created() {
     $(() => {
       $('#SliderTop').click(() => {
         $('html,body').animate({ scrollTop: 0 }, 'slow');
         return false;
       });
-
       // 偵測卷軸滑動時，往下滑超過400px就讓按鈕出現//
       $(window).scroll(() => {
         if ($(this).scrollTop() > 400) {
@@ -314,123 +349,143 @@ export default {
   background-size: cover;
 }
 
-#CarouselSlider {
-  .carousel-item {
-    height: 400px;
+.carousel-item {
+  height: 400px;
 
-    @media (max-width: 768px) {
-      height: 300px;
-    }
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+  @media (max-width: 575.98px) {
+    height: 200px;
+  }
+}
+
+.carousel01 {
+  background-image: url("../../assets/images/cover01.png");
+}
+.carousel02 {
+  background-image: url("../../assets/images/cover02.jpg");
+}
+.carousel03 {
+  background-image: url("../../assets/images/cover03.jpg");
+}
+
+.inside-banner {
+  width: 100%;
+  position: relative;
+  padding-bottom: 40%;
+  background-size: cover;
+  background-position: center center;
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    opacity: 0.8;
+    font-size: 40px;
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+
     @media (max-width: 575.98px) {
-      height: 200px;
-    }
-  }
-
-  .carousel01 {
-    background-image: url("../../assets/images/cover01.png");
-  }
-  .carousel02 {
-    background-image: url("https://scontent.ftpe7-1.fna.fbcdn.net/v/t31.0-8/s960x960/16992013_1023019867841945_3558742331080762043_o.jpg?_nc_cat=110&_nc_sid=05277f&_nc_ohc=BSw0P1ufNvEAX_6Etgp&_nc_ht=scontent.ftpe7-1.fna&_nc_tp=7&oh=be369ab9796f3a87f57fb41eb718c88d&oe=5EC257CC");
-  }
-  .carousel03 {
-    background-image: url("https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.0-0/p640x640/88336090_1958586280951961_4098884979327500288_o.jpg?_nc_cat=101&_nc_sid=dd9801&_nc_ohc=LhOi-BUL5EgAX9-KBnF&_nc_ht=scontent.ftpe7-4.fna&_nc_tp=6&oh=bc52549a268cd7dba172d3ba1c62dba4&oe=5EC16B12");
-  }
-
-  .inside-banner {
-    width: 100%;
-    position: relative;
-    padding-bottom: 40%;
-    background-size: cover;
-    background-position: center center;
-    p {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      opacity: 0.8;
-      font-size: 40px;
-      text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-
-      @media (max-width: 575.98px) {
-        margin-top: 20px;
-        font-size: 28px;
-      }
+      margin-top: 20px;
+      font-size: 28px;
     }
   }
 }
 
-#CategoryList {
-  .category-list {
-    ul {
-      padding-left: 20px;
-    }
 
-    > li {
-      //只改變下一層的子元素li，不再往內層作用
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 0;
-      transition: all 0.5s;
-      cursor: pointer;
-      color: rgb(150, 145, 145);
-      white-space: nowrap;
-      @media (max-width: 575.98px) {
-        font-size: 10px;
-        padding: 10px 0px;
-      }
-
-      &:hover,
-      &:active {
-        background-color: rgb(218, 215, 188);
-        color: rgb(173, 136, 80);
-      }
-    }
-    > li:not(:last-child) {
-      //作用在最後一個子元素
-      border-right: rgb(228, 224, 224) solid 1px;
-      @media (max-width: 768px) {
-        border: none;
-      }
-    }
-  }
-}
-
-#ProductsType {
-  .type01 {
-    background-image: url("../../assets/images/image11.jpg");
-  }
-  .type02 {
-    background-image: url("../../assets/images/image12.jpg");
-  }
-  .type03 {
-    background-image: url("../../assets/images/image13.jpg");
-  }
-  .type04 {
-    background-image: url("../../assets/images/image15.jpg");
-  }
-  .type05 {
-    background-image: url("../../assets/images/image14.jpg");
+.category-list {
+  ul {
+    padding-left: 20px;
   }
 
-  .black-cover {
+  > li {
+    //只改變下一層的子元素li，不再往內層作用
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    height: 280px;
-    position: relative;
-
-    span {
-      display: none;
+    padding: 15px 0;
+    transition: all 0.5s;
+    cursor: pointer;
+    color: rgb(150, 145, 145);
+    white-space: nowrap;
+    @media (max-width: 575.98px) {
+      font-size: 10px;
+      padding: 10px 0px;
     }
 
-    &:hover span {
-      z-index: 2;
+    &:hover,
+    &:active {
+      background-color: rgb(218, 215, 188);
+      color: rgb(173, 136, 80);
+    }
+  }
+  > li:not(:last-child) {
+    //作用在最後一個子元素
+    border-right: rgb(228, 224, 224) solid 1px;
+    @media (max-width: 768px) {
+      border: none;
+    }
+  }
+}
+
+.type01 {
+  background-image: url("../../assets/images/image11.jpg");
+}
+.type02 {
+  background-image: url("../../assets/images/image12.jpg");
+}
+.type03 {
+  background-image: url("../../assets/images/image13.jpg");
+}
+.type04 {
+  background-image: url("../../assets/images/image15.jpg");
+}
+.type05 {
+  background-image: url("../../assets/images/image14.jpg");
+}
+
+.black-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  height: 280px;
+  position: relative;
+
+  span {
+    display: none;
+  }
+
+  &:hover span {
+    z-index: 2;
+    display: block;
+    color: white;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 1s;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  @media (max-width: 575.98px) {
+    span {
       display: block;
-      color: white;
+      color: rgb(255, 255, 255);
+      z-index: 2;
     }
 
     &::before {
@@ -441,38 +496,13 @@ export default {
       width: 100%;
       height: 100%;
       z-index: 1;
-      opacity: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      transition: all 1s;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-
-    @media (max-width: 575.98px) {
-      span {
-        display: block;
-        color: rgb(255, 255, 255);
-        z-index: 2;
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        opacity: 0.7;
-        background-color: rgba(156, 152, 152, 0.5);
-      }
+      opacity: 0.7;
+      background-color: rgba(156, 152, 152, 0.5);
     }
   }
 }
 
-#NewsInfo {
+.NewsIist {
   //淡出動畫效果
   @keyframes flicker {
     0% {
@@ -494,60 +524,54 @@ export default {
   }
 }
 
-#VideoIntro {
-  .font-intro {
-    text-indent: 2em;
-  }
+.font-intro {
+  text-indent: 2em;
 }
 
-#BrandSpirit {
-  .brand-text {
-    padding: 20px;
-    background-color: rgb(187, 173, 133);
-  }
+.brand-text {
+  padding: 20px;
+  background-color: rgb(187, 173, 133);
+}
 
-  @media (min-width: 767px) {
-    .brand-block {
-      position: relative;
-      height: 450px;
-      .brand-img {
-        margin-top: 55px;
-        height: 350px;
-        position: absolute;
-        right: 0;
-        z-index: 1;
-      }
-      .brand-text {
-        height: 400px;
-        position: absolute;
-        left: 0;
-        padding: 20px 130px 20px 40px;
-      }
+@media (min-width: 767px) {
+  .brand-block {
+    position: relative;
+    height: 450px;
+    .brand-img {
+      margin-top: 55px;
+      height: 350px;
+      position: absolute;
+      right: 0;
+      z-index: 1;
+    }
+    .brand-text {
+      height: 400px;
+      position: absolute;
+      left: 0;
+      padding: 20px 130px 20px 40px;
     }
   }
 }
 
-#SubscribeChannel {
-  .channel-form {
-    padding: 2rem;
-    background: url("../../assets/images/contact01.png");
-    background-size: cover;
-    text-align: center;
-    @media (max-width: 767px) {
-      padding: 3rem 1rem;
-    }
-    h4 {
-      color: white;
-      text-shadow: 1px 1px 1px rgb(3, 50, 56);
-    }
-    p {
-      font-size: 15px;
-    }
+.channel-form {
+  padding: 2rem;
+  background: url("../../assets/images/contact01.png");
+  background-size: cover;
+  text-align: center;
+  @media (max-width: 767px) {
+    padding: 3rem 1rem;
   }
+  h4 {
+    color: white;
+    text-shadow: 1px 1px 1px rgb(3, 50, 56);
+  }
+  p {
+    font-size: 15px;
+  }
+}
 
-  .form-control {
-    padding: 0.3rem;
-    border-radius: 5px;
-  }
+.form-control {
+  padding: 0.3rem;
+  border-radius: 5px;
 }
 </style>

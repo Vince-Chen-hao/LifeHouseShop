@@ -1,8 +1,8 @@
-/* eslint-disable no-param-reassign */
 import axios from 'axios';
 
 export default {
   // namespaced: true, //轉換為區域變數
+  strict: true,
   state: {
     products: [],
     pagination: {},
@@ -31,6 +31,38 @@ export default {
         context.commit('TOTAL', response.data.data.total);
         context.commit('CARTNUM', response.data.data.carts.length);
         context.commit('LOADING', false);
+      });
+    },
+
+    addtoCart(context, { id, qty }) {
+      const { carts } = context.state.cart;
+      const index = carts.findIndex((item) => item.product_id === id);
+      const oldCart = { ...carts[index] };
+      let cart;
+      context.commit('LOADING', true);
+      if (index === -1) {
+        cart = {
+          product_id: id,
+          qty,
+        };
+      } else {
+        let newQty = oldCart.qty;
+        newQty += qty;
+        cart = {
+          product_id: id,
+          qty: newQty,
+        };
+      }
+      const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+      const removeApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${oldCart.id}`;
+      axios.post(addApi, { data: cart }).then((response) => {
+        if (response.data.success) {
+          axios.delete(removeApi).then(() => {
+            context.commit('LOADING', false);
+            context.dispatch('getCart');
+          });
+          context.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+        }
       });
     },
   },

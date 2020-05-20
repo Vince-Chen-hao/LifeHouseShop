@@ -18,7 +18,6 @@ export default {
     Alert,
     Footer,
   },
-
   data() {
     return {};
   },

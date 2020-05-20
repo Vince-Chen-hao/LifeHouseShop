@@ -58,9 +58,9 @@ export default {
 
   methods: {
     getOrders(page = 1) {
+      const vm = this;
       // ES6預設值，如無代數值便會使用原先1，如有帶入參數則用參數值
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`;
-      const vm = this;
       vm.$store.dispatch('updateLoading', true);
 
       vm.$http.get(api, vm.tempProduct).then((response) => {

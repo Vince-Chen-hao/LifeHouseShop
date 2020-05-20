@@ -142,9 +142,6 @@ export default {
   },
 
   methods: {
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
 
     createOrder() {
       const vm = this;
@@ -169,10 +166,6 @@ export default {
   },
   computed: {
     ...mapGetters(['cart']),
-  },
-
-  created() {
-    this.getCart();
   },
 };
 </script>

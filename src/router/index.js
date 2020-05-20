@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
-      // 輸入錯誤回傳頁面
+      // 錯誤網址會導至登入面
       path: '*',
       redirect: '/login',
     },
@@ -26,21 +26,21 @@ export default new VueRouter({
           path: 'products',
           name: 'products',
           component: () => import('@/views/Back/Products.vue'),
-          meta: { requiresAuth: true }, // 導航守衛
+          meta: { requiresAuth: true },
         },
 
         {
           path: 'orders',
           name: 'orders',
           component: () => import('@/views/Back/Order.vue'),
-          // meta: { requiresAuth: true },
+          meta: { requiresAuth: true },
         },
 
         {
           path: 'coupons',
           name: 'coupons',
           component: () => import('@/views/Back/Coupon.vue'),
-          // meta: { requiresAuth: true },
+          meta: { requiresAuth: true },
         },
       ],
     },
@@ -64,7 +64,7 @@ export default new VueRouter({
         },
 
         {
-          path: 'product_detail/:MyproductId', // productlist的參數ID
+          path: 'product_detail/:MyproductId',
           name: 'ProductDetail',
           component: () => import('@/views/Front/ProductDetail.vue'),
         },

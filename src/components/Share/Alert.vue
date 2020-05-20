@@ -15,25 +15,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Navbar',
   data() {
     return {
-      messages: [],
     };
   },
   methods: {
     updateMessage(message, status) {
-      const timestamp = Math.floor(new Date() / 1000);
-      this.messages.push({
-        message,
-        status,
-        timestamp,
-      });
-      this.removeMessageWithTiming(timestamp);
+      this.$store.dispatch('updateMessage', { message, status });
     },
     removeMessage(num) {
-      this.messages.splice(num, 1);
+      this.$store.dispatch('removeMessage', num);
     },
     removeMessageWithTiming(timestamp) {
       const vm = this;
@@ -46,6 +41,11 @@ export default {
       }, 5000);
     },
   },
+
+  computed: {
+    ...mapGetters(['messages']),
+  },
+
   created() {
     const vm = this;
 

@@ -116,8 +116,8 @@ export default {
       this.$store.dispatch('getCart');
     },
     removeCart(id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
       vm.$store.dispatch('updateLoading', true);
       vm.$http.delete(api).then((response) => {
         vm.$bus.$emit('message:push', response.data.message, 'danger');
@@ -126,8 +126,8 @@ export default {
       });
     },
     addCouponCode() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
       vm.$store.dispatch('updateLoading', true);
       const couponCode = {
         data: {

@@ -1,5 +1,5 @@
 <template>
-  <div id="coupon-section">
+  <div class="coupon-section">
     <div class="coupon-bg d-flex justify-content-center align-items-center"></div>
     <div class="container">
       <div class="h3 m-4 text-center discount-title p-4">
@@ -130,7 +130,7 @@ export default {
 </script>
 
 <style lang="scss">
-#coupon-section {
+.coupon-section {
   font-family: monospace;
   p {
     font-size: 13px;

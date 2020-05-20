@@ -142,7 +142,7 @@
                     <button
                       type="button"
                       class="btn btn-bg btn-block ml-auto text-dark"
-                      @click="addtoCart(item)"
+                      @click="addtoCart(item.id)"
                     >
                       <i
                         class="fas fa-spinner fa-spin"
@@ -203,13 +203,12 @@ export default {
       },
     };
   },
-  computed: {},
 
   methods: {
     // 取得分頁後的產品
     getProducts(page = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`;
       vm.$store.dispatch('updateLoading', true);
       vm.$http.get(api).then((response) => {
         vm.products = response.data.products;
@@ -219,27 +218,14 @@ export default {
       });
     },
 
-    addtoCart(item, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      const vm = this;
-      vm.$store.dispatch('updateLoading', true);
-      const cart = {
-        data: {
-          product_id: item.id,
-          qty,
-        },
-      };
-      vm.$http.post(api, cart).then((response) => {
-        vm.$bus.$emit('updateCart');
-        vm.$bus.$emit('message:push', response.data.message, 'success');
-        vm.$store.dispatch('updateLoading', false);
-      });
+    addtoCart(id, qty = 1) {
+      this.$store.dispatch('addtoCart', { id, qty });
     },
 
-    // 取得全部產品
+    // 取得全部產品資訊
     getAllproducts() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
       const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
       vm.$http.get(api).then((response) => {
         vm.Allproducts = response.data.products;
       });

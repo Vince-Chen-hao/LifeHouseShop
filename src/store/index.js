@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import cartsModel from './getdata';
+import alert from './alert';
+
 
 Vue.use(Vuex);
 
@@ -22,12 +24,12 @@ export default new Vuex.Store({
   // 這個區間裡(state是上面data的資料，status是從外部傳進來的payload參數))
   mutations: {
     LOADING(state, status) {
-      // eslint-disable-next-line no-param-reassign
       state.isLoading = status;
     },
   },
   modules: {
     cartsModel,
+    alert,
   },
 
   getters: {
