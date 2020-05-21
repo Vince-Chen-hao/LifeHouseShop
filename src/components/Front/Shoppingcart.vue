@@ -2,7 +2,7 @@
   <div>
     <div class="cart-dropdown">
       <a class="fixPage" @click.prevent="openList">
-        <img class="img-fluid" src="../../assets/images/1.png" alt="cart" />
+        <img class="img-fluid" src="../../assets/images/cart.png" alt="cart" />
         <span class="badge badge-pill" v-if="!cartNum == 0">{{ cartNum }}</span>
       </a>
       <!-- 購物清單內容 -->
