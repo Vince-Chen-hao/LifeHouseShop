@@ -22,7 +22,7 @@
                 <p class="card-text">適用商品：架上商品</p>
                 <h5 class="coupon-num-open text-center p-2">HAPPY2YEARS</h5>
                 <p class="card-text text-muted">
-                  活動日期：2020/04/20 - 2020/5/19
+                  活動日期：2020/05/25 - 2020/6/25
                 </p>
                 <a
                   href="#"
@@ -72,7 +72,7 @@
                 <p class="card-text">適用商品：限料理廚具</p>
                 <h5 class="coupon-num text-center p-2">XXXXXXXX</h5>
                 <p class="card-text text-muted">
-                  活動日期：2020/06/01 - 2020/06/30
+                  活動日期：2020/07/01 - 2020/07/31
                 </p>
                 <a href="#" class="btn btn-info btn-block disabled">敬請期待</a>
               </div>
@@ -93,7 +93,7 @@
                 <p class="card-text text-muted">
                   活動日期：2020/05/19 - 2020/05/20
                 </p>
-                <a href="#" class="btn btn-info btn-block disabled">敬請期待</a>
+                <a href="#" class="btn btn-info btn-block disabled">活動結束</a>
               </div>
             </div>
           </div>

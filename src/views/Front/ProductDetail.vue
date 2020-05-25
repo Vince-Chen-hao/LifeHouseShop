@@ -31,7 +31,7 @@
             <h3>{{ product.title }}</h3>
             <hr />
             <div class="category-content">
-              <span class="text-dark d-block">【產品描述】{{cart.total}}</span>
+              <span class="text-dark d-block">【產品描述】</span>
               {{ product.description }}
             </div>
 
@@ -360,7 +360,6 @@
 
 <script>
 
-import { mapGetters } from 'vuex';
 import Shoppingcart from '../../components/Front/Shoppingcart.vue';
 
 export default {
@@ -419,7 +418,6 @@ export default {
         (item) => item.id !== vm.product.id,
       ).filter((item) => item.category === vm.product.category);
     },
-    ...mapGetters(['cart']),
   },
 
 
