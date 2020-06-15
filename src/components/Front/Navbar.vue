@@ -2,10 +2,9 @@
   <div id="main-nav">
     <div class="marquee">
       <span><i class="fas fa-volume-up"></i> 活動快報</span>
-      <marquee
-        >歡慶 LifeHouse 品牌創立 2 週年！限時大放送～
-        輸入優惠代碼「HAPPY2YEARS」 享有線上購物 7 折優惠！！</marquee
-      >
+      <marquee scrollamount="5" behavior="alternate" >歡慶 LifeHouse 品牌創立 2 週年！限時大放送～
+        輸入優惠代碼「HAPPY2YEARS」 享有線上購物 7 折優惠！！
+      </marquee>
     </div>
     <div class="naver-title">
       <div class="container mb-4 p-0">
@@ -121,6 +120,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .marquee {
   background: rgba(67, 83, 81, 0.781);
   color: #fff;
@@ -142,7 +142,6 @@ export default {
   font-weight: bold;
   font-family: serif;
   text-shadow: 1px 1px 1px rgb(209, 207, 207);
-
 }
 
 .naver-title {

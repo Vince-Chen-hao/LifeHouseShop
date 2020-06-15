@@ -144,10 +144,6 @@
                       class="btn btn-bg btn-block ml-auto text-dark"
                       @click="addtoCart(item.id)"
                     >
-                      <i
-                        class="fas fa-spinner fa-spin"
-                        v-if="status.loadingItem === item.id"
-                      ></i>
                       <i class="fas fa-shopping-bag"></i><span> 立即選購</span>
                     </button>
                   </div>
@@ -184,23 +180,9 @@ export default {
     return {
       currentCat: '全部商品',
       Allproducts: [],
-      products: [],
       filterData: '',
       filterProducts: [],
       pagination: {},
-      cart: {},
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: '',
-        },
-        message: '',
-      },
-      status: {
-        loadingItem: '',
-      },
     };
   },
 
@@ -249,7 +231,7 @@ export default {
     // 關鍵字查詢產品
     filterTitle() {
       const vm = this;
-      vm.filterProducts = vm.products.filter((item) => item.title.indexOf(vm.filterData) > -1);
+      vm.filterProducts = vm.Allproducts.filter((item) => item.title.indexOf(vm.filterData) > -1);
       vm.filterData = '';
     },
     goDetail(id) {

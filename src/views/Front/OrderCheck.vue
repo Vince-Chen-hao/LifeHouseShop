@@ -148,11 +148,6 @@ export default {
       this.$router.push('/customer_order');
     },
   },
-  filters: {
-    NumCeiling(num) {
-      return Math.ceil(num);
-    },
-  },
   computed: {
     ...mapGetters(['cart']),
   },

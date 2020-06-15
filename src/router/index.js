@@ -60,7 +60,6 @@ export default new VueRouter({
           path: 'product_list',
           name: 'ProductList',
           component: () => import('@/views/Front/ProductList.vue'),
-          props: (route) => ({ category: route.query.category }),
         },
 
         {

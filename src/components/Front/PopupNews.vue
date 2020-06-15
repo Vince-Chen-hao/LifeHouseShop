@@ -72,14 +72,14 @@ export default {
 }
 
 .shine-screen {
-  border-radius: 20px;
-  overflow: hidden;
-  width: 100%;
-  z-index: 0;
   position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
   left: 0;
   top: 0;
-  height: 100%;
+  z-index: 0;
 
   &:after {
     content: "";
@@ -98,6 +98,16 @@ export default {
       rgba(128, 186, 232, 0) 99%,
       rgba(125, 185, 232, 0) 100%
     );
+  }
+}
+
+/* animation */
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -120,13 +130,5 @@ export default {
   color: #fff;
   text-shadow: 0 3px 5px #c5c3c3;
 }
-/* animation */
-@keyframes slide {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
+
 </style>

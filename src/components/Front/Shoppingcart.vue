@@ -126,9 +126,6 @@ export default {
   created() {
     const vm = this;
     vm.getCart();
-    vm.$bus.$on('updateCart', () => {
-      vm.getCart();
-    });
   },
 };
 </script>
