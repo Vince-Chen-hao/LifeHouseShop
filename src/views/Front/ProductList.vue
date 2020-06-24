@@ -112,7 +112,7 @@
                 v-for="(item, index) in filterProducts"
                 :key="index"
               >
-                <div class="card-effect card">
+                <div class="card-effect card" v-if="finded">
                   <div class="container-img">
                     <div class="sale-tag" v-if="item.origin_price !== ''">特價</div>
                     <div
@@ -149,10 +149,17 @@
                   </div>
                 </div>
               </div>
+            <div class="col-md-12 mb-4" v-if="!finded">
+              <div style="height: 200px" class="d-flex justify-content-center align-items-center">
+              <h5> Oops ! 沒有符合的商品名稱 </h5>
+
+              </div>
+            </div>
+
             </div>
             <div
               class="row justify-content-center"
-              v-if="currentCat === '全部商品'"
+              v-if="currentCat === '全部商品' && finded"
             >
               <Pagination
                 :pageProps="pagination"
@@ -183,6 +190,7 @@ export default {
       filterData: '',
       filterProducts: [],
       pagination: {},
+      finded: true,
     };
   },
 
@@ -220,10 +228,12 @@ export default {
       vm.$store.dispatch('updateLoading', true);
       let newArray = [];
       if (name === '全部商品') {
+        vm.finded = true;
         vm.getProducts();
       } else {
         newArray = vm.Allproducts.filter((product) => product.category === name);
         vm.filterProducts = newArray;
+        vm.finded = true;
       }
       vm.$store.dispatch('updateLoading', false);
     },
@@ -232,6 +242,12 @@ export default {
     filterTitle() {
       const vm = this;
       vm.filterProducts = vm.Allproducts.filter((item) => item.title.indexOf(vm.filterData) > -1);
+      if (vm.filterProducts.length > 0) {
+        vm.finded = true;
+        vm.currentCat = '';
+      } else {
+        vm.finded = false;
+      }
       vm.filterData = '';
     },
     goDetail(id) {
